@@ -1,6 +1,5 @@
 /*
-Valid Number
-Total Accepted: 15259 Total Submissions: 140068 My Submissions Question Solution 
+Valid Number Total Accepted: 15259 Total Submissions: 140068 My Submissions Question Solution 
 Validate if a given string is numeric.
 
 Some examples:
