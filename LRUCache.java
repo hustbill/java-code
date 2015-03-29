@@ -14,9 +14,10 @@ https://leetcode.com/problems/lru-cache/
 
 
 /*
-   my solution:   use a hashmap to store key and value pairs. use an array to track the items was visited or not. 
-   if the size of hashmap() is reached the cache capacity. then remove the 
-   
+   The key to solve this problem is using a double linked list which enables us to quickly move nodes
+Ref: 
+http://www.programcreek.com/2013/03/leetcode-lru-cache-java/
+ 
 */
 import java.util.HashMap;
 import java.util.Collections;
