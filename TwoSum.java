@@ -38,6 +38,10 @@ public class TwoSum {
     }
 	
 	// reference:  http://www.lifeincode.net/programming/leetcode-two-sum-3-sum-3-sum-closest-and-4-sum-java/
+	/*
+		We could reduce the runtime complexity of looking up a value to O(1) using a hash map
+		that maps a value to its index.
+		*/
 	//use hashmap
 	public static int[] twoSum(int[] numbers, int target) {
 		HashMap<Integer, Integer> map = new HashMap<>();
