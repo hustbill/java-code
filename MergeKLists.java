@@ -76,36 +76,87 @@ public class MergeKLists{
 		O(k) due to the heap.
 		*/
 		
-		private static final Comparator<ListNode> listComparator =
-			new Comparator<ListNode>() {
-			@Override
-			public int compare(ListNode x, ListNode y) {
-				return x.val - y.val;
-				}
-			};
-			
+		// private static final Comparator<ListNode> listComparator =
+		// 	new Comparator<ListNode>() {
+		// 	@Override
+		// 	public int compare(ListNode x, ListNode y) {
+		// 		return x.val - y.val;
+		// 		}
+		// 	};
+		//
+		// public static ListNode mergeKLists(List<ListNode> lists) {
+		// 	if (lists.isEmpty()) return null;
+		// 		Queue<ListNode> queue = new PriorityQueue<>(lists.size(), listComparator);
+		// 	for (ListNode node : lists) {
+		// 		if (node != null) {
+		// 			queue.add(node);
+		// 		}
+		// 	}
+		// 	ListNode dummyHead = new ListNode(0);
+		// 	ListNode p = dummyHead;
+		// 	while (!queue.isEmpty()) {
+		// 		ListNode node = queue.poll();
+		// 		p.next = node;
+		// 		p = p.next;
+		// 		if (node.next != null) {
+		// 			queue.add(node.next);
+		// 		}
+		// 	}
+		// 	return dummyHead.next;
+		// }
+		//
+	
+		
 		public static ListNode mergeKLists(List<ListNode> lists) {
-			if (lists.isEmpty()) return null;
-				Queue<ListNode> queue = new PriorityQueue<>(lists.size(), listComparator);
-			for (ListNode node : lists) {
-				if (node != null) {
-					queue.add(node);
-				}
+			// Ref :  下面的解法，和上面是一致的。 但是加了注释。更加好懂。
+			// http://www.programcreek.com/2013/02/leetcode-merge-k-sorted-lists-java/
+			/* 
+				We could use a min heap of size k. The heap is first initialized with the smallest element
+				from each list. Then as we extract the nodes out from the heap, we must remember to
+				insert its next node into the heap. As each insert operation into the heap costs log(k) and
+				there are a total of nk elements, the total runtime complexity is O(nk log k).
+				Ignoring the extra space that is used to store the output list, we only use extra space of
+				O(k) due to the heap.
+				*/
+			if (lists.size() == 0)
+				return null;
+ 
+			//PriorityQueue is a sorted queue
+			PriorityQueue<ListNode> q = new PriorityQueue<ListNode>(lists.size(), // why add lists.size()? ans: init Q
+					new Comparator<ListNode>() {
+						public int compare(ListNode a, ListNode b) {
+							if (a.val > b.val)
+								return 1;
+							else if(a.val == b.val)
+								return 0;
+							else 
+								return -1;
+						}
+					});
+ 
+			//add first node of each list to the queue
+			for (ListNode list : lists) {
+				if (list != null)
+					q.add(list);
 			}
-			ListNode dummyHead = new ListNode(0);
-			ListNode p = dummyHead;
-			while (!queue.isEmpty()) {
-				ListNode node = queue.poll();
-				p.next = node;
+ 
+			ListNode head = new ListNode(0);
+			ListNode p = head; // serve as a pointer/cursor
+ 
+			while (q.size() > 0) {
+				ListNode temp = q.poll();
+				//poll() retrieves and removes the head of the queue - q. 
+				p.next = temp;
+ 
+				//keep adding next element of each list
+				if (temp.next != null)
+					q.add(temp.next);
+ 
 				p = p.next;
-				if (node.next != null) {
-					queue.add(node.next);
-				}
 			}
-			return dummyHead.next;
+ 
+			return head.next;
 		}
-	
-	
 
 
 	public static void main(String[] args ) {
