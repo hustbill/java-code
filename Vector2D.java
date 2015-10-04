@@ -31,7 +31,6 @@ public class Vector2D {
 	
 	*/
 	
-	public class Vector2D {
     // Refer 1:  http://www.meetqun.com/thread-10681-1-1.html
     // Refer 2: http://www.cnblogs.com/jcliBlogger/p/4704781.html
     Iterator<List<Integer>> rowIt;
@@ -54,8 +53,7 @@ public class Vector2D {
     }
     
 }
-    
-}
+
 
 /**
  *  * Your Vector2D object will be instantiated and called as such:

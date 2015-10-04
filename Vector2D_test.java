@@ -1,15 +1,10 @@
 import java.util.*;
 
 public class Solution {
-
-     
      public static void main(String[] args) {
-         
          System.out.println("hello world");
          List<List<Integer>> vec2d = new ArrayList<List<Integer>>();
-         
-         
-            ArrayList<Integer> a1 = new ArrayList<Integer>();
+        ArrayList<Integer> a1 = new ArrayList<Integer>();
       	// add elements to the array list
       	a1.add(1);
       	a1.add(2);

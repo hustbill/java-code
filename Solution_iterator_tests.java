@@ -1,15 +1,12 @@
 import java.util.*;
 
-public class Solution {
+public class Solution_iterator_tests {
 
-     
      public static void main(String[] args) {
          
          System.out.println("hello world");
          List<List<Integer>> vec2d = new ArrayList<List<Integer>>();
-         
-         
-            ArrayList<Integer> a1 = new ArrayList<Integer>();
+         ArrayList<Integer> a1 = new ArrayList<Integer>();
       	// add elements to the array list
       	a1.add(1);
       	a1.add(2);
@@ -35,8 +32,9 @@ public class Solution {
 		 * while (i.hasNext()) v[f()] = i.next();
 		 */
 		ZigzagIterator j = new ZigzagIterator(a1, a3);
-		while (k.hasNext()) 
+		while(j.hasNext()) {
 			System.out.println("ZigzagIterator : " + j.next());
+		}
 	  } else {
 		 /**
 		 * Your Vector2D object will be instantiated and called as such:
@@ -44,12 +42,8 @@ public class Solution {
 		 * while (i.hasNext()) v[f()] = i.next();
 		 */
 		Vector2D i = new Vector2D(vec2d);
-        int[] v = new int[vec2d.size()];
-        System.out.println("size = " + vec2d.size());
- 			
- 		while (i.hasNext()) {
+        while(i.hasNext()) {
  			System.out.println("next = " +i.next());
- 			
  		}
 		System.out.println("PeekingIterator");
 		Iterator<Integer> iterator = a3.iterator();
@@ -60,10 +54,6 @@ public class Solution {
 			} 
 		}
 	 }
-     
-    
-     
-
 }
 
 //https://www.hackerrank.com/
