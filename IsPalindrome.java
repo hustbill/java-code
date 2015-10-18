@@ -1,5 +1,6 @@
 public class IsPalindrome {
     public static boolean isPalindrome(int x) {
+	    if (x < 0) return false;
         int p=x, q=0;
 		
 		while(p>=10) {
