@@ -1,9 +1,11 @@
+import java.util.*;
+
 public class CanPermutePalindrome {
     public static boolean canPermutePalindrome(String s) {
         char[] arr = s.toCharArray();
-		Map<Char, Integer> map = new Map<Char, Integer>();
+		Map<Character, Integer> map = new HashMap<Character, Integer>();
 		
-		
+		return true;
     }
 	
 	public static void main(String[] args) {

@@ -12,10 +12,10 @@ import java.util.*;
 
 
 public class InorderTraversal {
-    public List<Integer> inorderTraversal(TreeNode root) {
+    public static List<Integer> inorderTraversal(TreeNode root) {
         
         Stack<TreeNode>  stack = new Stack<TreeNode>();
-        ArrayList<Integer>  result = new ;
+        ArrayList<Integer>  result = new ArrayList<Integer>();
         TreeNode curt = root;
         
         while (curt != null && !stack.empty()) {
@@ -23,7 +23,7 @@ public class InorderTraversal {
                 stack.add(curt);
                 curt = curt.left;
             }
-            curt = stack.peerk();
+            curt = stack.peek();
             stack.pop();
             result.add(curt.val);
             curt = curt.right;
@@ -37,11 +37,21 @@ public class InorderTraversal {
         TreeNode two = new TreeNode(2);
         two.right = new TreeNode(3);
         root.right = two;
+    
+        System.out.println((root.val));
         
         Iterator<Integer> it = inorderTraversal(root).iterator();
         while(it.hasNext()) {
+           
             System.out.println(it.next());
         }
     }
+}
+
+class TreeNode {
+    int  val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode(int x) { val = x; }
 }
 
