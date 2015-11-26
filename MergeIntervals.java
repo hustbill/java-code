@@ -7,6 +7,7 @@
  *     Interval(int s, int e) { start = s; end = e; }
  * }
  */
+<<<<<<< HEAD
  import java.util.*;
  
 public class MergeIntervals {
@@ -68,11 +69,23 @@ I used an anonymous comparator and a for-each loop to try to keep the code clean
 		for( Interval i : res) 
 			System.out.println( "[" +  i.start + ", " + i.end + "]");
 	}
+=======
+ 
+ 
+public class MergeIntervals {
+    public List<Interval> merge(List<Interval> intervals) {
+        
+    }
+>>>>>>> dev-win
 }
 
 class Interval {
 	int start;
 	int end;
 	Interval() { start = 0; end =0;}
+<<<<<<< HEAD
 	Interval(int s, int e) { start = s ; end = e; }
+=======
+	Interval(int s, int e) { star = s ; end = e; }
+>>>>>>> dev-win
 }
