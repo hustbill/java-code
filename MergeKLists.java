@@ -17,6 +17,7 @@ public class MergeKLists {
 		Ignoring the extra space that is used to store the output list, we only use extra space of
 		O(k) due to the heap.
         */
+        if (lists == null || lists.length == 0) return null;
         PriorityQueue<ListNode> q = new PriorityQueue<ListNode>( lists.size(), comparator);
         for (ListNode node : lists) {
             if (node != null)
