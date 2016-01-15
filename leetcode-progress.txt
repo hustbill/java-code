@@ -1,2 +1,3 @@
-2016.01.15: 3sum, 3sum closest, 3sumSmaller, countAndSay
+2016.01.15:
+ 3sum, 3sum closest, 3sumSmaller, countAndSay, 4sum
 
