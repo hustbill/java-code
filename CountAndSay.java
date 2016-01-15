@@ -33,8 +33,7 @@ From the examples you can see, the (i+1)th sequence is the "count and say" of th
 */
 public class CountAndSay {
     public static String countAndSay(int n) {
-        // Ref1:  https://leetcode.com/discuss/7678/show-an-answer-in-java
-        // Ref2:https://leetcode.com/discuss/7535/examples-of-nth-sequence
+          
         StringBuilder  curr = new StringBuilder("1");
         StringBuilder prev;
         int count;
