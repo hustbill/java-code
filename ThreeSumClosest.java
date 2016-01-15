@@ -27,16 +27,15 @@ public class ThreeSumClosest {
              Each time compare the difference between sum and target, 
             if it is less than minimum difference so far, then replace result with it, 
             otherwise keep iterating.
-            
             */
         int result = nums[0] + nums[1] + nums[nums.length-1];
         Arrays.sort(nums);
             
         for(int i = 0; i < nums.length - 2; i++) {
             int lo = i+1, hi = nums.length - 1;
-            int sum = nums[i] + nums[lo] + nums[hi];
             
             while (lo < hi) {
+                int sum = nums[i] + nums[lo] + nums[hi];
                 if (sum < target) {
                     lo++;
                 } else {
@@ -59,5 +58,9 @@ public class ThreeSumClosest {
         int sum = threeSumClosest(nums, target);
         
         System.out.printf("sum = %d", sum);
+        
+        int[] nums2 = {0,2,1,-3};
+        
+        System.out.printf("\nsum2 = %d",  threeSumClosest(nums2, target));
     }
 }
