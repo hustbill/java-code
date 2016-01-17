@@ -25,18 +25,31 @@ class ListNode {
 
 public class Partition {
     public static ListNode partition(ListNode head, int x) {
-        ListNode dummyHead = new ListNode(0);
-        ListNode p = dummyHead.next;
-        ListNode fast = dummyHead;
-        ListNode slow = dummyHead;
-
-        int len = 0;
-        while (fast.next != null) {
-            fast = fast.next;
-            len++;
+        // Ref1: https://leetcode.com/discuss/21032/very-concise-one-pass-solution
+        // Ref2: https://leetcode.com/discuss/22895/concise-java-code-with-explanation-one-pass
+        /*the basic idea is to maintain two queues, the first one stores all nodes with val 
+            less than x , and the second queue stores all the rest nodes. 
+            Then concat these two queues. Remember to set the tail of second queue a null next, 
+            or u will get TLE.
+            */
+        ListNode node1 = new ListNode(0);
+        ListNode node2 = new ListNode(0);
+        ListNode p1 = node1;
+        ListNode p2 = node2;
+        
+        while (head != null) {
+            if (head.val < x) {
+                p1.next = head;
+                p1 = p1.next; 
+            } else {
+                p2.next = head;
+                p2 = p2.next;
+            }
+            head = head.next;
         }
-
-        return dummyHead.next;
+        p2.next = null; //important! avoid cycle in linked list. otherwise u will get TLE.
+        p1.next = node2.next;
+        return node1.next;
     }
 
     public static void main(String[] args) {
@@ -49,18 +62,14 @@ public class Partition {
               p = p.next;
         }
         
-        if (head.next != null) {
-            ListNode result = partition(head.next, 2);
-            printListNode(result);
-        }
+        ListNode result = partition(head.next, 3);
+        printListNode(result);
         
-        
-       
     }
     
     private static void printListNode( ListNode head) {
-        while (head.next != null) {
-            System.out.print (" " + head.next.val);
+        while (head != null) {
+            System.out.print ( head.val + " -> " );
             head = head.next;
         }
     }

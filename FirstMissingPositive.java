@@ -28,7 +28,7 @@ public class FirstMissingPositive {
         }
 
         i= 0;
-        // 2. find the location which its value doesn't match the index
+        // 2. find first location where the index doesn't match the value
         while( i < A.length && A[i] == i+1 ) i++;
         return i+1;
 
