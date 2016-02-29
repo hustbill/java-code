@@ -44,7 +44,7 @@ public class Combinations {
     }
     
     public static List<List<Integer>> solution2(int n, int k) {
-        // https://leetcode.com/discuss/31250/backtracking-solution-java
+        // https://leetcode.com/discuss/31250/backtracking-solution-java                     
         List<List<Integer>> res = new ArrayList<List<Integer>>();
         List<Integer> comb = new ArrayList<Integer>();
         combine(res, comb, 1, n, k);
