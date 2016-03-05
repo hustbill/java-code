@@ -1,0 +1,36 @@
+题目：
+
+1. 有向图 找所有start node到end node之间的路径
+http://www.themianjing.com/2016/01/pocket-gems-lytmus-challenge-%E9%9D%A2%E7%BB%8F/
+
+输入是一个txt 形式如下：
+A E
+A : B C D
+B : C
+C : E
+D : B
+
+A-> B -> C-> E
+A-> C->E
+A-> D ->B->C->E
+
+输出一个List 是从A到E所有的path
+
+参考：
+
+http://stackoverflow.com/questions/58306/graph-algorithm-to-find-all-connections-between-two-arbitrary-vertices
+
+我的问题：
+如果直接给端点， Search.java 正常输出结果
+        Graph graph = new Graph();
+      graph.addEdge("A", "B");
+      graph.addEdge("A", "C");
+      graph.addEdge("A", "D");
+      graph.addEdge("B", "C");
+      graph.addEdge("C", "E"); 
+      graph.addEdge("D", "B");
+      
+
+如果从in.txt 读取端点数据，然后在for循环里 添加graph.addEdge(p0, p1)， 则不能正常返回结果。
+
+请教你，我这段代码出来什么问题？
