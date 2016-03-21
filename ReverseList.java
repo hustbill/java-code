@@ -60,9 +60,6 @@ public class ReverseList {
                head.next = newHead;
                newHead = head;
                head = next;
-               
-               //  printNode(newHead);
-               //printNode(head);
            }
            return newHead;
     }
