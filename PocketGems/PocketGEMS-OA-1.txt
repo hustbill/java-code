@@ -22,7 +22,7 @@ http://stackoverflow.com/questions/58306/graph-algorithm-to-find-all-connections
 
 我的问题：
 如果直接给端点， Search.java 正常输出结果
-        Graph graph = new Graph();
+    Graph graph = new Graph();
       graph.addEdge("A", "B");
       graph.addEdge("A", "C");
       graph.addEdge("A", "D");
