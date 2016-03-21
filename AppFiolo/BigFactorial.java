@@ -9,19 +9,22 @@ Above program does not give correct result for calculating factorial of say 20. 
 
 import java.util.Scanner;
 import java.math.BigInteger;
+import java.util.Random;
 
 class BigFactorial
 {
   public static void main(String args[])
   {
     int n, c;
+    Random randomGenerator = new Random();
+    n = randomGenerator.nextInt(14);
     BigInteger inc = new BigInteger("1");
     BigInteger fact = new BigInteger("1");
 
     Scanner input = new Scanner(System.in);
 
-    System.out.println("Input an integer");
-    n = input.nextInt();
+    System.out.printf("Input an integer: %d \n", n);
+    //n = input.nextInt();
 
     for (c = 1; c <= n; c++) {
       fact = fact.multiply(inc);
