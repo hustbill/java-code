@@ -21,7 +21,7 @@ import java.util.*;
 
 public class TwoSumIII {
     private Map<Integer, Integer> table = new HashMap<>();
-    
+    // add - O(1) runtime, find- O(n) runtime, O(n) space- store in hash table
 	
     // Add the number to an internal data structure.
    	public void add(int number) {
