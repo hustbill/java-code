@@ -54,24 +54,45 @@ import java.util.*;
          System.out.print(rightSideView(root));
      }
      
+     
     public static List<Integer> rightSideView(TreeNode root) {
+         //https://leetcode.com/discuss/30464/reverse-level-order-traversal-java
+         // Reverse Level Order Traversal, java
+         List<Integer> list = new ArrayList<>();
+         Queue<TreeNode> queue = new LinkedList<>();
+         if (root == null) return list;
+         
+         queue.offer(root);
+         
+         while(queue.size() != 0) {
+             int size = queue.size();
+             for(int i=0; i < size; i++) {
+                 TreeNode cur = queue.poll();
+                 if (i == 0) list.add(cur.val);
+                 if (cur.right != null) queue.offer(cur.right);
+                 if (cur.left != null) queue.offer(cur.left);
+             }
+         }
+         return list;
+    } 
+     
+    public static List<Integer> rightSideView_sol2(TreeNode root) {
+        /* The core idea of this algorithm:
+        1. Each depth of the tree only select one node
+        2. View depth is current size of result list
+            https://leetcode.com/discuss/31348/my-simple-accepted-solution-java
+            */
         List<Integer> list = new ArrayList<>();
-        if (root == null)  return list;
-        
-        list.add(root.val);
-        helper(list, root.left, root.right);
+        helper(list, root, 0);
         return list;
     }
     
-    public static void helper(List<Integer> list, TreeNode left, TreeNode right) {
-        if (right == null ) {
-            if (left != null) {
-                list.add(left.val);
-                helper(list, left.left, left.right);
-            }
-        } else {
-            list.add(right.val);
-            helper(list, right.left, right.right);       
+    public static void helper(List<Integer> list, TreeNode root, int depth) {
+        if (root == null) return; 
+        if (depth == list.size()) {
+            list.add(root.val);
         }
+        helper(list, root.right, depth + 1);
+        helper(list, root.left, depth + 1);
     }
 }
