@@ -51,6 +51,7 @@ import java.util.*;
          two.right = five;
         // three.right = four;
          
+         //[1, 2 ,3 , 5,4]  => [1,3,5]
          System.out.print(rightSideView(root));
      }
      
