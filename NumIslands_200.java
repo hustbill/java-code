@@ -28,8 +28,6 @@ Hide Similar Problems (M) Surrounded Regions (M) Walls and Gates (H) Number of I
 */
 
 public class NumIslands_200 {
-    private static int m;
-    private static int n;
     
     public static void main(String[] args) {
         char[][] grid = new char[][]{
@@ -43,16 +41,16 @@ public class NumIslands_200 {
     }
     
     public static int numIslands(char[][] grid) {
-        // Ref: https://leetcode.com/discuss/34436/very-concise-java-ac-solution
-        m = grid.length;
-        n = grid[0].length;
+        // Ref: https://leetcode.com/discuss/48889/clear-%26-easy-java-solution
+        int m = grid.length;
+        int n = grid[0].length;
         int count = 0;
         
         for (int i=0; i < m; i++) {
             for (int j=0; j < n; j++) {
                 if (grid[i][j] == '1') {
+                    count++;
                     dfsMarking(grid, i, j);
-                    ++count;
                 }
             }
         }
@@ -61,7 +59,7 @@ public class NumIslands_200 {
     
     // mark the explored cell to '0'
     public  static void dfsMarking(char[][] grid, int i, int j) {
-        if (i < 0 || j < 0  || i >=m || j >= n || grid[i][j] != '1') return;
+        if (i < 0 || j < 0  || i >=grid.length || j >= grid[0].length || grid[i][j] != '1') return;
         grid[i][j] = '0';
         dfsMarking(grid, i + 1, j);
         dfsMarking(grid, i - 1, j);
