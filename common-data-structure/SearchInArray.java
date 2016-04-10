@@ -16,7 +16,8 @@ public class SearchInArray {
         System.out.println(binarySearch(sortedList, target));
         
     }
-    // 
+    // Note : the subList method on List takes two parameters, from and to :
+    // from is inclusive, and to is exclusive
     public static boolean binarySearch(List<Integer> list, int target) {
         if (list == null || list.isEmpty()) {
             return false;
