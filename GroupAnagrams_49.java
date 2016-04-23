@@ -9,11 +9,12 @@ public class GroupAnagrams_49 {
     }
     
     public static List<List<String>> groupAnagrams(String[] strs) {
+        // https://leetcode.com/discuss/58561/share-my-short-java-solution
         List<List<String>> result  = new ArrayList<List<String>>();
         if (strs == null || strs.length == 0) return result;
         
         HashMap<String, List<String>> map = new HashMap<String, List<String>>(); 
-        //Arrays.sort(strs);
+        //Arrays.sort(strs);  // 33ms
         
         for (String s : strs) {
             char[] ca = s.toCharArray();
@@ -25,7 +26,7 @@ public class GroupAnagrams_49 {
             map.get(keyStr).add(s);
         }
         
-        // sort map save 10 ms than sort whole array
+        // sort map save 6~10 ms than sort whole array // 27 ms
         for (String key : map.keySet()) {
             Collections.sort(map.get(key));
         }
