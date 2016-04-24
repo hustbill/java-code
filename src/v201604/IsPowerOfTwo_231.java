@@ -1,6 +1,36 @@
 package v201604;
 /*
+ * Power of 231 Two, 326.Three, 342.Four
  * 
+ * 342. Power of Four   My Submissions QuestionEditorial Solution
+Total Accepted: 6545 Total Submissions: 19526 Difficulty: Easy
+Given an integer (signed 32 bits), write a function to check whether it is a power of 4.
+
+Example:
+Given num = 16, return true. Given num = 5, return false.
+
+Follow up: Could you solve it without loops/recursion?
+
+Credits:
+Special thanks to @yukuairoy for adding this problem and creating all test cases.
+
+Hide Company Tags Two Sigma
+Hide Tags Bit Manipulation
+Hide Similar Problems (E) Power of Two (E) Power of Three
+
+ * 
+ * 231. Power of Two   My Submissions QuestionEditorial Solution
+Total Accepted: 69865 Total Submissions: 191640 Difficulty: Easy
+Given an integer, write a function to determine if it is a power of two.
+
+Credits:
+Special thanks to @jianchao.li.fighter for adding this problem and creating all test cases.
+
+Hide Company Tags Google
+Hide Tags Math Bit Manipulation
+Hide Similar Problems (E) Number of 1 Bits (E) Power of Three (E) Power of Four
+
+
  * 
  * 326. Power of Three   My Submissions QuestionEditorial Solution
 Total Accepted: 37366 Total Submissions: 102354 Difficulty: Easy
@@ -35,7 +65,43 @@ public class IsPowerOfTwo_231 {
 
 		n = -16;
 		System.out.println(isPowerOfTwo(n));
+		
+		n = 9;
+		System.out.println(isPowerOfThree(n));
 
+		n = 4;
+		System.out.println(isPowerOfFour(n));
+
+		n = 2048;
+		System.out.println(isPowerOfFour(n));
+
+	}
+
+	
+	/*
+    Using regular expression 
+    n = 3, Integer.toString(n,3)  = 10 
+    n = 9, Integer.toString(n,3)  = 100
+    n = 27, Integer.toString(n,3) = 1000
+  */
+  public static boolean isPowerOfThree(int n) {
+      return Integer.toString(n, 3).matches("10*");
+  }   
+  
+	// using regx
+	// since power of four is like, 100, 10000, 1000000
+	/* https://leetcode.com/discuss/97967/java-1-line-of-code-and-can-be-extended-to-any-radix-solution?show=97967#q97967
+	 * The idea is that numbers in quaternary system that is power of 4 will be like 10, 100, 1000 and such. 
+	 * Similar to binary case. And this can be extended to any radix.
+	 * num = 4 is power of 4 : Integer.toString(num, 4) = 10 => true
+	 * 
+	 * num = 1024 is power of 4 : Integer.toString(num, 4) = 100000 => true
+	 * 
+	 * num = 2048 is not power of 4: Integer.toString(num, 4) = 200000 = > false
+	 * 
+	 */
+	public static boolean isPowerOfFour(int num) {
+		return Integer.toString(num, 4).matches("10*");
 	}
 
 	public static boolean isPowerOfTwo(int n) {
@@ -72,9 +138,12 @@ public class IsPowerOfTwo_231 {
 
 	}
 
+	
+
+	
 	// Recursive Solution
 	public boolean isPowerOfThree_recursive(int n) {
-		return n > 0 && (n == 1 || (n % 3 == 0 && isPowerOfThree(n / 3)));
+		return n > 0 && (n == 1 || (n % 3 == 0 && isPowerOfThree_recursive(n / 3)));
 	}
 
 	// Iterative Solution
