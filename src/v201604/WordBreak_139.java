@@ -22,7 +22,7 @@ public class WordBreak_139 {
 		// TODO Auto-generated method stub
 		Set<String> wordDict = new HashSet<String>();
 
-		wordDict.addAll(Arrays.asList("lee", "le", "co", "de"));
+		//wordDict.addAll(Arrays.asList("lee", "le", "co", "de"));
 		wordDict.add("leet");
 		wordDict.add("code");
 		
@@ -49,6 +49,7 @@ public class WordBreak_139 {
 		for (int i = 1; i <= n; i++) {
 			for (int j = 0; j < i; j++) {
 				if (breakable[j] && wordDict.contains(s.substring(j, i))) {
+					System.out.printf("j = %d, i = %d\n", j, i);
 					breakable[i] = true;
 					break;
 				}
