@@ -1,10 +1,17 @@
-Solutions to Leetcode online judge
-
-Version history:
-Init Date: July 5, 2014 
-UpdateDate: March 25, 2015
+Java concept and coding questions
+=================================
 
 
-If you find a issue or more optimial solution,  feel free to email me.  Thanks, Hua :-)
+##Version history
+Init Date: July 5, 2014   
+UpdateDate: March 25, 2015  
 
-Email: billyzhang2010@gmail.com
+
+
+
+
+If you find a issue or more optimial solution,  feel free to email me.  
+
+Thanks, Hua :-)  
+
+Email: hua.zhang@wsu.edu    
