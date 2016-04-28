@@ -30,6 +30,24 @@ public class ShortestDistance_243 {
     }
     
     public static int shortestDistance(String[] words, String word1, String word2) {
+        // https://leetcode.com/discuss/50234/ac-java-clean-solution
+        int p1 = -1, p2 = -1, min = Integer.MAX_VALUE;
+
+        for (int i = 0; i < words.length; i++) {
+            if (words[i].equals(word1)) 
+                p1 = i;
+
+            if (words[i].equals(word2)) 
+                p2 = i;
+
+            if (p1 != -1 && p2 != -1)
+                min = Math.min(min, Math.abs(p1 - p2));
+        }
+
+        return min;
+    }
+    
+    public static int shortestDistance_mine(String[] words, String word1, String word2) {
         // ["hello", "is", "word", "what", "is", "a ", "word"]
         List<Integer> list1 = new ArrayList<Integer>();
         List<Integer> list2 = new ArrayList<Integer>();
