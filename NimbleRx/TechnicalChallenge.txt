@@ -1,0 +1,47 @@
+Q1 - JDK Implementation of Phone Number service
+Problem Statement
+You are given a large collection of phone numbers (100K) to process. The phone numbers are US phone numbers. From these phone numbers, you will need to:
+1) Determine if the phone number is a valid phone number (i.e. 555-541-1234 is not a valid phone number).
+2) You will need to determine if the phone number is a cell phone.
+3) You will need to process this very quickly (another 100K phone numbers will come your way).
+4) You will need to return a collection of phone number that are verified cell phone numbers.
+5) You should think about how expensive it is to call Twilio and avoid it as much as possible until you are sure that you need to call Twilio (optimize before you call Twilio).
+6) The code must be written in Java.
+
+
+API Definition:
+1) You can define a phone number class with the variables you feel are appropriate.
+2) Assuming you name your class PhoneNumber, the API would look like public Set<PhoneNumber> getValidPhoneNumber(final Collection<String> phoneNumbers);
+
+
+Hints:
+1) You should use as many features of JDK 6, 7, 8 as possible, it will make your life simple.
+2) You should break this problem into smaller problems. There is a library for you to get information about a phone number including if it's valid. To figure out the type of phone number (i.e.), you'll need a service like Twilio. You're not expected to run 100K phone numbers against Twilio, I will know if the code works or not by looking at your implementation.
+
+
+
+Q2 - Database Tasks
+
+Domain Description
+I have people at a university. These people can be teachers and students. Teachers can teach classes and students can attend classes. Some students (i.e. graduate students) may also teach classes. Students may have grades for a specific class in a specific term (i.e. Spring 2010).
+
+
+Task Description:
+1) Define the relational data model
+2) Populate the data model with test data
+
+
+Queries:
+1) How many people are exclusively students?
+2) How many people are exclusively teachers?
+3) How many people are both students and teachers?
+4) Assume you have a student name Mickey Mouse, what is his Data Structure & Algorithm Grade in Spring 2010?
+5) Assume you have a student name Minnie Mouse, what is her GPA?
+6) What is the median grade for all students taking Physics in Fall 2010?
+7) Assume you have a professor name Donald Duck, what courses did he teach in Summer 2010?
+8) What courses has Minnie Mouse taken with Donald Duck as the professor?
+9) Assume that Snow White is both a student and a teacher. What classes has Snow White and Minnie Mouse taken together as students?
+10) What classes has Snow White taught that Minnie Mouse has attended?
+11) What classes have been taught by both Donald Duck and Snow White?
+12) Assume that Mickey Mouse has taken Data Structures & Algorithms several times, Spring 2010 for a C-, Summer 2010 for a B+, and Fall 2010 for a A-, and Winter 2010 for an A. What was his highest grade for Data Structure and Algorithms and what term was that in?
+13) How many classes did Snow White take in 2010?
