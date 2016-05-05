@@ -1,0 +1,7 @@
+1	clock   daemon
+2	authpriv	security/authorization messages
+3	ftp	    FTP daemon
+4	-	    NTP subsystem
+5	-	    log audit
+6	-	    log alert
+7	cron	scheduling daemon
