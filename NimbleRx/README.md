@@ -1,9 +1,11 @@
-#NimbleRx technical chanllege
+#NimbleRx technical challenge
 
 ##Q1 - JDK Implementation of Phone Number service
 ###Problem Statement
 You are given a large collection of phone numbers (100K) to process. The phone numbers are US phone numbers. From these phone numbers, you will need to:
+
 1) Determine if the phone number is a valid phone number (i.e. 555-541-1234 is not a valid phone number).
+
 [Hua] use libphonenumber, Google’s open source phone number handling library, to properly format possible phone numbers for a given region, using length and prefix.
 
 
@@ -16,6 +18,7 @@ You are given a large collection of phone numbers (100K) to process. The phone n
 4) You will need to return a collection of phone number that are verified cell phone numbers.
 
 5) You should think about how expensive it is to call Twilio and avoid it as much as possible until you are sure that you need to call Twilio (optimize before you call Twilio).
+
 [Hua]  Use caching, so that for those duplicate numbers we validate using our caching. 
 or using ElasticSearch. We will index and store the validated phone number into our ElasticSearch. 
 
