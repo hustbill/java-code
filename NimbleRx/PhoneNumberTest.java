@@ -33,6 +33,7 @@ public class PhoneNumberTest {
             System.out.println(phoneNum);
         }
     }
+    
 
     public static Set<PhoneNumber> getValidaPhoneNumber(final Collection<String> phoneNumbers) {
         Set<PhoneNumber> result = new HashSet<PhoneNumber>();
@@ -51,4 +52,15 @@ public class PhoneNumberTest {
         }
         return result;
     }
+
+    /*
+        Twilio Lookup is a simple REST API with a ton of utility. 
+        Twilio https://www.twilio.com/lookup
+        You can use Lookup to check whether a number exists, 
+        format international numbers to local standards, 
+        determine whether a phone is a landline or can receive text messages, 
+        and even discover information about the carrier associated with that phone number.
+        
+        Ref: https://www.twilio.com/blog/2016/02/how-to-verify-phone-numbers-in-python-with-the-twilio-lookup-api.html
+    */
 }
