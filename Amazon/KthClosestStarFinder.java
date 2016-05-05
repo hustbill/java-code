@@ -17,7 +17,7 @@ public class KthClosestStarFinder{
             pq.add(sky[i]);
 
         for (int i = k; i < N; i++) {
-            Star mystar = sky[k];
+            Star mystar = sky[i];
             if (mystar.compareTo(pq.peek()) < 0) {
                 pq.remove();
                 pq.add(mystar);
@@ -32,7 +32,7 @@ public class KthClosestStarFinder{
         Random random = new Random();
         
         for (int i = 0 ; i < N  ; i++) {
-            sky[i] = new Star(i, 100 + random.nextInt(1000) + i  );
+            sky[i] = new Star(i, 100 + random.nextInt(10000) + i  );
             //System.out.print(sky[i].getDistance() + " , ");
         }
         
