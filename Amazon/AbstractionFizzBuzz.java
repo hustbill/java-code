@@ -27,8 +27,5 @@ public class AbstractionFizzBuzz {
     
     private static String toWord(final int divisor, final int value, final String word) {
             return value % divisor == 0 ? word : "";
-                              
     }
-                          
-    
 }
