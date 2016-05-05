@@ -28,6 +28,7 @@ or using ElasticSearch. We will index and store the validated phone number into 
 
 ###API Definition:
 1) You can define a phone number class with the variables you feel are appropriate.
+
 2) Assuming you name your class PhoneNumber, the API would look like public Set<PhoneNumber> getValidPhoneNumber(final Collection<String> phoneNumbers);
 
 
