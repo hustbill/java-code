@@ -8,7 +8,7 @@ Q2: Hive ORC and Hive ETL
 **Answer:**    
 ORC <The Optimized Row Columnar> file format provides a highly efficient way to store Hive data. It was designed to overcome limitations of the other Hive file formats. Using ORC files improves performance when Hive is reading, writing and processing data.  
 
-Hive ETL : Example: How to use Hive for ELT  
+Hive ETL : [Example: How to use Hive for ELT](http://www.ibm.com/developerworks/library/bd-hivetool/)  
 
 
 Q3:  MongoDB and JSON format  
