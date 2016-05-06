@@ -1,0 +1,26 @@
+TWILIO REST API: Lookups
+https://www.twilio.com/docs/api/lookups
+The Lookups subdomain provides an API to retrieve additional information about a phone number. Lookups currently supports retrieval of Region-specific phone number formatting, Carrier Information and Caller Name information. You can specify one or more types of information you would like to purchase in the request.
+
+
+Lookups Subdomain
+
+Resource URI
+
+lookups.twilio.com/v1/PhoneNumbers/{PhoneNumber}
+{PhoneNumber} is the phone number you are requesting information about. Phone numbers can be specified either in national formatting or in standard E.164 format. If providing a number in local national format, please also specify the country as an optional parameter. If no country is provided, this will default to US. Twilio will use libphonenumber, Google’s open source phone number handling library, to properly format possible phone numbers for a given region, using length and prefix.
+
+HTTP GET
+
+Returns phone number information matching the specified request. Formatting information is standard. Carrier, Caller Name and phone number type information can be requested.
+
+Query Parameters
+
+The following basic GET query string parameters allow you to specify the phone number you want information about and the types of information you’d like:
+
+PARAMETER	DESCRIPTION
+CountryCode	Optional ISO country code of the phone number. This is used to specify the country when the number is provided in a national format.
+
+Type	Indicates the type of information you would like returned with your request. Possible values are carrier or caller-name. If not specified, the default is null. 
+Carrier information costs $0.005 per phone number looked up. 
+Caller Name information costs $0.01 per phone number looked up, and is currently ONLY available in the US
