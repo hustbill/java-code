@@ -5,16 +5,17 @@ import java.util.List;
 import java.util.Set;
 
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
+import com.twilio.sdk.TwilioRestException;
 
 /**
  * Main
  *
  */
 public class App {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws TwilioRestException {
 		
 	        List<String> phoneNumbers = new ArrayList<String>();
-	        phoneNumbers.add("360-553-2397");
+	        phoneNumbers.add("360-553-2393");
 	        phoneNumbers.add("408.441.8300");
 	   
 	        //Invalid phone numbers
@@ -24,14 +25,13 @@ public class App {
 	        phoneNumbers.add("280 456 7890");
 
 	        System.out.println("Validated Phone Numbers:");
+	        
 	        PhoneNumberValidator validator = new PhoneNumberValidator();
 	        Set<PhoneNumber> set = validator.getValidaPhoneNumber(phoneNumbers);
 	        for (PhoneNumber phoneNum : set) {
-	            System.out.println(phoneNum);
-	        }
-	        
-	        //twilioLookup();
-	    }
-
-	
+	        	long nationalNumber = phoneNum.getNationalNumber();
+	            System.out.print(nationalNumber  + " " );
+	            System.out.print(validator.twilioLookup(String.valueOf(nationalNumber)) + "\n");
+	        }	        
+	    }	
 }
