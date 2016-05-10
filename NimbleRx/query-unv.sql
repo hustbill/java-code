@@ -29,94 +29,38 @@ select count(*) from Teacher t  where t.teacherid  in (select studentid from Stu
    and s.fname='Minnie' and s.lname='Mouse'
    and st.secyear='2010';
 
-CREATE TABLE GpaLookup
-(
-  grade VARCHAR(4) NOT NULL,
-  point Numeric(2,1) NOT NULL
-);
-
-insert GpaLookup 
-(grade, point)
-values ('A', 4.0);
-
-insert GpaLookup 
-(grade, point)
-values ('A', 4.0);
-
-insert GpaLookup 
-(grade, point)
-values ('A', 4.0);
-
-insert GpaLookup 
-(grade, point)
-values ('A-', 3.7);
-
-insert GpaLookup 
-(grade, point)
-values ('B+', 3.3);
-
-insert GpaLookup 
-(grade, point)
-values ('B', 3.0);
-
-insert GpaLookup 
-(grade, point)
-values ('B-', 2.7);
-
-insert GpaLookup 
-(grade, point)
-values ('C+', 2.3);
-
-insert GpaLookup 
-(grade, point)
-values ('C', 2.0);
-
-insert GpaLookup 
-(grade, point)
-values ('C-', 1.7);
-
-insert GpaLookup 
-(grade, point)
-values ('D+', 1.3);
-
-insert GpaLookup 
-(grade, point)
-values ('D', 1.0);
-
-insert GpaLookup 
-(grade, point)
-values ('D-', 0.7);
-
-insert GpaLookup 
-(grade, point)
-values ('F-', 0);
-
 
 -- 6) What is the median grade for all students taking Physics in Fall 2010?
- select AVG(grade) as median from ( Select 
-(
-case e.score when 'A' then 4.0 when 'A-' then 3.7 when 'B+' then 3.3   when 'B' then 3.0 when 'B' then 2.7
-when 'C+' then 2.3   when 'C+' then 2.0  when 'C-' then 1.7     when 'D+' then 1.3    when 'D' then 1.0  
- when 'D-' then 0.7   when 'F' then 0.0
-END ) as grade
+select grade as medin_grade from GpaLookup where point = (
+select ROUND(avg(point), 1) as median from (
+	select
+	(
+	case e.score when 'A' then 4.0 when 'A-' then 3.7 when 'B+' then 3.3   when 'B' then 3.0 when 'B' then 2.7
+	when 'C+' then 2.3   when 'C+' then 2.0  when 'C-' then 1.7     when 'D+' then 1.3    when 'D' then 1.0  
+	 when 'D-' then 0.7   when 'F' then 0.0
+	END) as point
 
- from Section st, Course c, Enrollment e
-    where st.courseid = c.courseid 
-    and st.secid = e.secid
-    and c.name = 'Physics'
-    and st.secterm = 'Fall'
-    and st.secyear = '2010')  as grade; 
+	 from Section st, Course c, Enrollment e 
+	  where 
+	  st.courseid = c.courseid 
+	    and st.secid = e.secid
+	    and c.name = 'Physics'
+	    and st.secterm = 'Fall'
+	    and st.secyear = '2010' ) 
+ as points);
 
-
-select e.studentid, e.score
-
- from Section st, Course c, Enrollment e
-    where st.courseid = c.courseid 
-    and st.secid = e.secid
-    and c.name = 'Physics'
-    and st.secterm = 'Fall'
-    and st.secyear = '2010'; 
-
+ select grade as medin_grade from GpaLookup where point = (
+select ROUND(avg(point), 1) as median from (
+	select distinct point from GpaLookup where grade in (
+	select e.score from Section st, Course c, Enrollment e 
+	  where 
+	  st.courseid = c.courseid 
+	    and st.secid = e.secid
+	    and c.name = 'Physics'
+	    and st.secterm = 'Fall'
+	    and st.secyear = '2010' )) as foo);
+    
+    
 -- 7) Assume you have a professor name Donald Duck, what courses did he teach in Summer 2010?
 select c.name from Section st, Course c, Teacher t
     where st.courseid = c.courseid and t.teacherid = st.teacherid
@@ -154,36 +98,46 @@ and t.fname = 'Snow'
 	and s.fname = 'Minnie'
 	and s.lname ='Mouse'
 
-
-
-CREATE TABLE t1 (s1 INT, s2 CHAR(5), s3 FLOAT);
-INSERT INTO t1 VALUES (1,'1',1.0);
-INSERT INTO t1 VALUES (2,'2',2.0);
-SELECT sb1,sb2,sb3
-  FROM (SELECT s1 AS sb1, s2 AS sb2, s3*2 AS sb3 FROM t1) AS sb
-  WHERE sb1 > 1;
-
 -- 11) What classes have been taught by both Donald Duck and Snow White?
-select cname from 
-(select c.name as cname, count(t.fname) as count from Course c, Teacher t, Section st
+select c.name as cname, count(distinct t.teacherid) as count from Course c, Teacher t, Section st
 where  t.teacherid = st.teacherid and st.courseid = c.courseid	
      and (( t.fname = 'Snow'
 	and t.lname = 'White')
 	or ( t.fname = 'Donald'
 	and t.lname = 'Duck'))
-group by name) as names where count > 1 ;
+  group by name
+  having count(t.teacherid)>=2;
 
 -- 12) Assume that Mickey Mouse has taken Data Structures & Algorithms several times, Spring 2010 for a C-, Summer 2010 for a B+, 
 -- and Fall 2010 for a A-, and Winter 2010 for an A. What was his highest grade for Data Structure and Algorithms and what term was that in?
-select e.score from Section st, Enrollment e, Student s, Course c 
+
+
+select (case e.score when 'A' then 4.0 when 'A-' then 3.7 when 'B+' then 3.3   when 'B' then 3.0 when 'B' then 2.7
+	when 'C+' then 2.3   when 'C+' then 2.0  when 'C-' then 1.7     when 'D+' then 1.3    when 'D' then 1.0  
+	 when 'D-' then 0.7   when 'F' then 0.0
+	END) as point, st.secterm as term from Section st, Enrollment e, Student s, Course c 
     where  e.studentid = s.studentid and st.courseid = c.courseid and st.secid = e.secid
 	and s.fname = 'Mickey'
 	and s.lname ='Mouse'
 	and c.coursenumber = 'CS223';
 
 
+
+
+select max(foo.point) from (select (case e.score when 'A' then 4.0 when 'A-' then 3.7 when 'B+' then 3.3   when 'B' then 3.0 when 'B' then 2.7
+	when 'C+' then 2.3   when 'C+' then 2.0  when 'C-' then 1.7     when 'D+' then 1.3    when 'D' then 1.0  
+	 when 'D-' then 0.7   when 'F' then 0.0
+	END) as point, st.secterm as term from Section st, Enrollment e, Student s, Course c 
+    where  e.studentid = s.studentid and st.courseid = c.courseid and st.secid = e.secid
+	and s.fname = 'Mickey'
+	and s.lname ='Mouse'
+	and c.coursenumber = 'CS223' ) as foo;
+
+
+
+
 -- 13) How many classes did Snow White take in 2010?
-select * from Course c, Student s, Section st, Enrollment e
+select count(c.courseid) from Course c, Student s, Section st, Enrollment e
 where c.courseid = st.courseid and s.studentid = e.studentid  and e.secid = st.secid
 	and st.secyear = '2010'
 	and  s.fname = 'Snow'
