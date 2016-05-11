@@ -1,4 +1,4 @@
--- insert data
+﻿-- insert data
 insert into Student
 (studentid, fname, lname, depname, year, email, phone)
 values (100100100, 'Mickey','Mouse','ENCS',3,'mickey.mouse@wsu.edu','1-360-234-5678');
@@ -84,50 +84,43 @@ values(1005, 'Winter', '2010', '', '', '', 100100, 500100101);
 
 
 insert into Enrollment
-(studentid, secid,  score)
+(studentid, secid,  grade)
 values (100100100, 1000, 'C-');
 
 insert into Enrollment
-(studentid, secid, score)
+(studentid, secid, grade)
 values (100100101, 1001, 'B+');
 
 insert into Enrollment
-(studentid, secid, score)
+(studentid, secid, grade)
 values (100100103, 1001, 'A');
 
 insert into Enrollment
-(studentid, secid, score)
+(studentid, secid, grade)
 values (100100104, 1001, 'A-');
 
 
 insert into Enrollment
-(studentid, secid, score)
+(studentid, secid, grade)
 values (100100101, 1002, 'A-');
 
 insert into Enrollment
-(studentid, secid, score)
+(studentid, secid, grade)
 values (100100102, 1002, 'B-');
 
 
 insert into Enrollment
-(studentid, secid, score)
+(studentid, secid, grade)
 values (100100100, 1003, 'B+');
 
 insert into Enrollment
-(studentid, secid, score)
+(studentid, secid, grade)
 values (100100100, 1004, 'A-');
 
 insert into Enrollment
-(studentid, secid, score)
+(studentid, secid, grade)
 values (100100100, 1005, 'A');
 
-insert into GpaLookup
-(grade, point)
-values ('A', 4.0);
-
-insert into GpaLookup
-(grade, point)
-values ('A', 4.0);
 
 insert into GpaLookup
 (grade, point)
