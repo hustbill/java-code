@@ -1,5 +1,5 @@
-﻿-- create by tools
--- 
+﻿-- drop tables
+
 drop table Student CASCADE;
 drop table Department CASCADE;
 drop table Teacher CASCADE;
@@ -8,8 +8,7 @@ drop table Section CASCADE;
 drop table Enrollment CASCADE;
 drop table GpaLookup CASCADE;
 
--- 
-
+-- create tables
 
 CREATE TABLE Student
 (
@@ -76,7 +75,7 @@ CREATE TABLE Enrollment
 (
   studentid CHAR(9) NOT NULL,
   secid INT NOT NULL,
-  score VARCHAR(4) NOT NULL,
+  grade VARCHAR(4) NOT NULL,
   FOREIGN KEY (studentid) REFERENCES Student(studentid),
   FOREIGN KEY (secid) REFERENCES Section(secid)
 );
@@ -84,5 +83,6 @@ CREATE TABLE Enrollment
 CREATE TABLE GpaLookup
 (
   grade VARCHAR(4) NOT NULL,
-  point Numeric(2,1) NOT NULL
+  point Numeric(2,1) NOT NULL,
+  PRIMARY KEY (grade)
 );

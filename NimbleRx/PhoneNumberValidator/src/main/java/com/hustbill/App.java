@@ -1,8 +1,20 @@
 package com.hustbill;
 
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.groupingBy;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 import com.twilio.sdk.TwilioRestException;
@@ -31,9 +43,31 @@ Run time:  5145ms
  *
  */
 public class App {
-	public static void main(String[] args) throws TwilioRestException {
+	
+	  private static Set<String> readFromFile() throws IOException {
+		  Set<String> phoneNumbers = new HashSet<String>();
+		    final Path inputPath = Paths.get("src/main/resources/phone.txt");
+
+	        Stream<String> lines = Files.lines(inputPath);
+	        Map<String, Long> words = lines
+	                .map((String line) -> line.split("\\n"))
+	                .flatMap(Arrays::stream)
+	                .map(String::toLowerCase)
+	                .collect(groupingBy(s -> s, counting()));
+	        lines.close();
+	        
+	        phoneNumbers = words.keySet();
+	        
+
+		    return phoneNumbers;
+		
+		  }
+	
+	public static void main(String[] args) throws TwilioRestException, IOException {
 		
 	        List<String> phoneNumbers = new ArrayList<String>();
+	        Set<String> result = readFromFile();
+	        
 	        phoneNumbers.add("360-553-2393");  // MOBILE
 	        phoneNumbers.add("408.441.8300");  // LANDLINE
 	        
@@ -66,30 +100,58 @@ public class App {
 	        phoneNumbers2.add("202-555-0169");
 
 	        System.out.println("1st round Validated Cell Phone Numbers:");
-	        long startTime=System.currentTimeMillis(); 
+	
 	        
 	        PhoneNumberValidator validator = new PhoneNumberValidator();
-	        Set<PhoneNumber> set = validator.getValidaPhoneNumber(phoneNumbers);
-	        for (PhoneNumber phoneNum : set) {
-	        	long nationalNumber = phoneNum.getNationalNumber();
-	            System.out.println(nationalNumber  + " " );
-	        }
+
+	        Set<PhoneNumber> set = new HashSet<PhoneNumber>();
+	        
+	        long startTime=System.currentTimeMillis(); 
+	         set = validator.getValidaPhoneNumber(result);
+//	        for (PhoneNumber phoneNum : set) {
+//	        	long nationalNumber = phoneNum.getNationalNumber();
+//	            System.out.println(nationalNumber  + " " );
+//	        }
+	        System.out.printf("1st set = %d\n" , set.size());
 	        
 	        long endTime=System.currentTimeMillis();
 
 	        System.out.println("Run time:  "+(endTime-startTime)+"ms"); 
 	        
-	        System.out.println("\n2nd round Validated Cell Phone Numbers:");
-	        startTime=System.currentTimeMillis();  
+	       
+	   
 	        
-	        set = validator.getValidaPhoneNumber(phoneNumbers2);
-	        for (PhoneNumber phoneNum : set) {
-	        	long nationalNumber = phoneNum.getNationalNumber();
-	            System.out.println(nationalNumber  + " " );
-	        }
+	        System.out.println("\n2nd round Validated Cell Phone Numbers:");
+	        
+	        startTime=System.currentTimeMillis();  
+	        set = validator.getValidaPhoneNumber(result);
+	        System.out.printf("2nd set = %d\n" , set.size());
+	        endTime=System.currentTimeMillis();
+	        System.out.println("Run time:  "+(endTime-startTime)+"ms"); 
+	        
+	        
+	   
+	        
+	        System.out.println("\n3rd round Validated Cell Phone Numbers:");
+	        startTime=System.currentTimeMillis();  
+	        set = validator.getValidaPhoneNumber(result);
+	        System.out.printf("3rd set = %d\n" , set.size());
 	        
 	        endTime=System.currentTimeMillis();  
 	        System.out.println("Run time:  "+(endTime-startTime)+"ms"); 
 	        
 	    }	
+	
+	
+	  private static void write2file() throws IOException {
+		    final Path inputPath = Paths.get("src/main/resources/validednum.txt");
+		    try (PrintWriter w = new PrintWriter(Files.newBufferedWriter(inputPath))) {
+		      for (int i = 0; i < 600; i++) {
+		        final String text = String.valueOf(System.nanoTime());
+		        for (int j = 0; j < 15; j++) w.print(text);
+		        w.println();
+		      }
+		    }
+	
+		  }
 }

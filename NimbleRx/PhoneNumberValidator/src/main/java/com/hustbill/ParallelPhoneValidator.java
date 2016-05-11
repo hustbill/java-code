@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -21,20 +20,13 @@ public class ParallelPhoneValidator {
 	static double sink;
 	static Set<PhoneNumber> result = new HashSet<PhoneNumber>();
 
-	private final Path inputPath;
-
 	// Find your Account Sid and Token at twilio.com/user/account
-	public static final String ACCOUNT_SID = "AC180c23689eab0b992235e6d14a1efd91";
-	public static final String AUTH_TOKEN = "7b290425b3a0d209bcbd74be314574ea";
+	public static final String ACCOUNT_SID = "ACbdc579bf50d3995b262a44f24d6f1491";
+	public static final String AUTH_TOKEN = "c330fec63941a84f36729bc287c1a0ff";
 
-	public ParallelPhoneValidator(String inputPath) {
-		// TODO Auto-generated constructor stub
-		this.inputPath = Paths.get(inputPath);
-	}
 
 	public static void main(String[] args) throws IOException {
-		// final Path inputPath = Paths.get("src/main/resources/phone.txt");
-		final Path inputPath = Paths.get("src/main/resources/small.txt");
+		final Path inputPath = Paths.get("src/main/resources/data.txt");
 		for (int i = 1; i < 3; i++) {
 			System.out.printf("Start Sequentially processing %d round stream \n", i);
 			measureProcessing(Files.lines(inputPath));

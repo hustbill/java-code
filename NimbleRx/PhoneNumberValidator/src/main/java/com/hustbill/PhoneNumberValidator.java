@@ -4,6 +4,8 @@
  * Steps: 
  * 		1.Determine if the phone number is a valid phone number using Google's libphonenumber 
  * 		2.Determine if the phone number is a cell phone by Call Twilio Lookup API 
+ * 		3.Use LRUCache to save the phone number which determined by Twilio Lookup API
+ * 		4. Multithread Version using ConcurrentHashMap and Future (To be done)
  * 
  * Date: 2016/05/05
  * 
@@ -59,18 +61,19 @@ public class PhoneNumberValidator {
 			
 				if (isValid) {
 					long key =  usaNumberProto.getNationalNumber();
-					if (cache.get(key) != -1) {
-						if (cache.get(key) == 1) {  // 1 - MOBILE
-							result.add(usaNumberProto);
-						}
-					} else {
-						if (twilioLookup(usaNumberProto) == "MOBILE") {
-							result.add(usaNumberProto);
-							cache.set(key, 1);
-						} else {
-							cache.set(key, 0);  // 0 - LANDLINE
-						}
-					}
+					result.add(usaNumberProto);
+//					if (cache.get(key) != -1) {
+//						if (cache.get(key) == 1) {  // 1 - MOBILE
+//							result.add(usaNumberProto);
+//						}
+//					} else {
+//						if (twilioLookup(usaNumberProto) == "MOBILE") {
+//							result.add(usaNumberProto);
+//							cache.set(key, 1);
+//						} else {
+//							cache.set(key, 0);  // 0 - LANDLINE
+//						}
+//					}
 				}				
 			} catch (Exception e) {
 				System.err.println("NumberParseException was thrown: " + e.toString());
