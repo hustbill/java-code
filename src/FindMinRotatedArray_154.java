@@ -18,7 +18,9 @@ Hide Similar Problems (M) Find Minimum in Rotated Sorted Array
 
 
 */
-
+5
+2 4 26
+abcde
 public class FindMinRotatedArray_154 {
     public int findMin(int[] nums) {
         // https://leetcode.com/discuss/19746/my-pretty-simple-code-to-solve-it
