@@ -1,3 +1,5 @@
+package v201605;
+
 /*
 191. Number of 1 Bits   My Submissions QuestionEditorial Solution
 Total Accepted: 90018 Total Submissions: 239682 Difficulty: Easy
@@ -17,6 +19,6 @@ Hide Similar Problems (E) Reverse Bits (E) Power of Two (M) Counting Bits
 public class HammingWeight_191 {
     // you need to treat n as an unsigned value
     public int hammingWeight(int n) {
-        
+        return -1;
     }
 }

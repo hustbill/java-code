@@ -1,3 +1,5 @@
+package v201605;
+
 /*345. Reverse Vowels of a String   My Submissions QuestionEditorial Solution
 Total Accepted: 10539 Total Submissions: 29840 Difficulty: Easy
 Write a function that takes a string as input and reverse only the vowels of a string.
@@ -15,6 +17,12 @@ Hide Similar Problems (E) Reverse String
 import java.util.*;
 
 public class ReverseVowels_345 {
+	public static void main(String[] args) {
+		String s = "leetcode";
+		System.out.printf(" %s -> %s\n", s, new ReverseVowels_345().reverseVowels_stack(s));
+		System.out.printf(" %s -> %s", s, new ReverseVowels_345().reverseVowels(s));
+	}
+	
     public String reverseVowels_stack(String s) {
       /* 
         https://leetcode.com/discuss/98987/java-standard-two-pointer-solution
@@ -50,25 +58,27 @@ public class ReverseVowels_345 {
            statically declared String as the dictionary and use the indexOf function to avoid String comparison. 
            This code run in 6ms.
         */
+    	if (s == null || s.length() == 0) return s;
+    	
         String vowels = "aeiouAEIOU";
         
         int start = 0, end = s.length() - 1;
         char[] arr = s.toCharArray();
         
         while (start < end) {
-            while (start < end && vowels.indexOf(arr[start]) != -1) {
+            while (start < end && !vowels.contains(arr[start] + "")) {
                 start++;
             }
-            while(start < end && vowels.indexOf(arr[end]) != -1) {
+            while(start < end && !vowels.contains(arr[end] +"")) {
                 end--;
             }
     
-            char temp = arr[end];
-            arr[end] = arr[start];
-            arr[start] = temp;
+            char temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
             start++;
             end--;
         }
-        return String.valueOf(arr);
+        return new String(arr);
     }
 }
