@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class ConvertSortedListToBST_109 {
 	/**
@@ -42,6 +43,35 @@ public class ConvertSortedListToBST_109 {
 		levelOrderPrint(result);
 	
 	}
+	
+	//level order printing
+		public static void levelOrderPrint(TreeNode root){
+		    Queue<TreeNode> que = new LinkedList<TreeNode>();
+		    TreeNode mark = new TreeNode(0);
+		    if(root != null){
+		        que.add(root);
+		        que.add(mark);
+		    }
+		    while(!que.isEmpty()){
+		    	TreeNode temp = que.poll();
+		        if(temp != mark)
+		        System.out.print(temp.val);
+		        if(temp == mark){
+		            if(que.peek() == mark || que.isEmpty()){
+		                return;
+		            }
+		            que.add(mark);
+		            System.out.println();
+		        }
+		        if(temp.left != null){
+		            que.add(temp.left);
+		        }
+		        if(temp.right != null){
+		            que.add(temp.right);
+		        }
+		    }
+		}
+
 
 	public static TreeNode sortedListToBST(ListNode head) {
 		// ref:
