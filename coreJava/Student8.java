@@ -1,11 +1,16 @@
 //Example of static variable
 // http://www.javatpoint.com/static-keyword-in-java
 // Date: May 24, 2016
+/*
+111 Karan ENCS
+222 Aryan ENCS
+*/
+
 
 class Student8{  
     int rollno;  
     String name;  
-    static String college ="ENCSs";  
+    static String college ="ENCS";  
      
     Student8(int r,String n){  
         rollno = r;  
