@@ -73,14 +73,4 @@ public class GroupStrings_249 {
 		return new ArrayList<List<String>>(map.values());
 	}
 
-	String getTag(String s) {
-		int diff = (int) s.charAt(0) - (int) 'a';
-		
-
-		StringBuilder sb = new StringBuilder();
-		for (char c : s.toCharArray())
-			sb.append((c + 26 - diff) % 26);
-
-		return sb.toString();
-	}
 }
