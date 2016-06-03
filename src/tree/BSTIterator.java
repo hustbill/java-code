@@ -1,3 +1,4 @@
+package tree;
 /*173. Binary Search Tree Iterator
 Total Accepted: 38767 Total Submissions: 118060 Difficulty: Medium
 Implement an iterator over a binary search tree (BST). Your iterator will be initialized with the root node of a BST.

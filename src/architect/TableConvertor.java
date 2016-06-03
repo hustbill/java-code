@@ -16,59 +16,24 @@ public class TableConvertor {
 	 * @param args
 	 */
 
+	
 	private static HashMap<String, Boolean[]> map;
 	final static String[] operators = { "and", "and not", "or" };
-
-	public static void transfer() {
-		String s[] = { "a", "b", "c", "d" };
-		double d[][] = { { 0.50, 0.20, 0.20, 0.30 }, { 0.50, 1.10, 0.50, 0.80 }, { 0.50, 0.70, 0.40 }, { 0.50, 0.70 },
-				{ 0.50 }, };
-		System.out.println(Arrays.toString(s));
-		System.out.println(Arrays.deepToString(d));
-	}
-
+	static TableConvertor covertor = new TableConvertor();
+	
 	public static void main(String[] args) {
-		// test case 1
-		map = new HashMap<String, Boolean[]>();
-		map.put("A", new Boolean[] { true, false, false });
-		map.put("B", new Boolean[] { true, false, false });
-		map.put("C", new Boolean[] { false, false, true });
-		String result = convert(map);
-		System.out.println(result);
-
-		// test case 2
 		map = new HashMap<String, Boolean[]>();
 		map.put("A", new Boolean[] { true, false, false });
 		map.put("B", new Boolean[] { true, false, false });
 		map.put("C", new Boolean[] { true, false, false });
-		result = convert(map);
-		System.out.println(result);
-
-		// test case 3
-		map = new HashMap<String, Boolean[]>();
-		map.put("A", new Boolean[] { true, false, false });
-		map.put("B", new Boolean[] { true, false, false });
-		map.put("C", new Boolean[] { false, false, true });
-		map.put("D", new Boolean[] { false, true,  false});
-		map.put("E", new Boolean[] { false, true, false });
-		result = convert(map);
-		System.out.println(result);
-
-		// test case 4
-		map = new HashMap<String, Boolean[]>();
-		map.put("A", new Boolean[] { false, false, true });
-		map.put("B", new Boolean[] { false, false, true });
-		map.put("C", new Boolean[] { false, true, false });
-		result = convert(map);
-		System.out.println(result);
-
+		System.out.println(covertor.convertMapToExpression(map));
 	}
 
-	public static String convert(HashMap<String, Boolean[]> map) {
-		String result = "";
-		StringBuffer sb = new StringBuffer();
-		boolean[][] arr = new boolean[map.keySet().size()][map.values().size()];
-		int count = 0;  // count of "Not"
+	public String convertMapToExpression(HashMap<String, Boolean[]> map) {
+		
+		StringBuilder sb = new StringBuilder();
+		
+		int countNot = 0;  // count of "Not"
 
 		for (String key : map.keySet()) {
 			Boolean[] vals = map.get(key);
@@ -76,21 +41,56 @@ public class TableConvertor {
 
 			for (int i = 0; i < len; i++) {
 				if (vals[i]) {
-					sb.append(operators[i] + " " + key + " ");
 					if (i == 1) {
-						count++;
-						if (count > 1) {
-							System.out.println(" Error: 'Not' has at most one");
-							return "";
+						countNot++;
+						if (countNot > 1) {
+							throw new IllegalArgumentException("Error: 'Not' has at most one");
 						}
 					}
+					if( sb.length() != 0 ) {
+						sb.append(" " + operators[i] + " ");
+					}
+					sb.append( key );
 				}
 			}
 		}
 		
-		String str = sb.toString();
-		result = str.substring(str.indexOf(" "));
-		return result;
+//		String str = sb.toString();
+//		result = str.substring(str.indexOf(" "));  // remove first operator :  and A and B or C =>  A and B or C 
+		
+		// add parentheses
+		//  A and B or C  = >  (A and B) or C 
+		
+		return  addParentheses(sb.toString());
+	}
+	
+	public String addParentheses(String s) {
+		StringBuilder sb = new StringBuilder();
+		
+		String[] words  = s.split(" ");
+		int first = 1, index = 0, opIndex = 1;
+		
+		sb.append("(");
+		
+		
+		while (opIndex < words.length - 1 && index < words.length - 1) {
+			sb.append(words[index]);
+			index++;
+			
+			if (words[opIndex]  == words[first]) {
+				opIndex += 2;
+			}
+		}
+		
+		String result = "";
+		
+		
+		// A and B or C
+		int firstIndx = s.indexOf("and");
+		int secondIndx = s.indexOf("and", firstIndx)  + "and B".length();
+		
+		result = "(" + s.substring(0,secondIndx) + ") " + s.substring(secondIndx+ 1);
+		return sb.toString();
 	}
 
 }
