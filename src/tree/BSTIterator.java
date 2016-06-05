@@ -1,4 +1,5 @@
 package tree;
+
 /*173. Binary Search Tree Iterator
 Total Accepted: 38767 Total Submissions: 118060 Difficulty: Medium
 Implement an iterator over a binary search tree (BST). Your iterator will be initialized with the root node of a BST.
@@ -13,14 +14,16 @@ Hide Company Tags LinkedIn Google Facebook Microsoft
 Hide Tags Tree Stack Design
 Hide Similar Problems (M) Binary Tree Inorder Traversal (M) Flatten 2D Vector (M) Zigzag Iterator (M) Peeking Iterator (M) Inorder Successor in BST */
 
-/** Definition for binary tree */
-public class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode(int x) { val = x; }
-}
- 
+import java.util.Stack;
+
+///** Definition for binary tree */
+//public class TreeNode {
+//    int val;
+//    TreeNode left;
+//    TreeNode right;
+//    TreeNode(int x) { val = x; }
+//}
+// 
 
 public class BSTIterator {
     // use stack to store directed left children from root.

@@ -26,5 +26,7 @@ public class IsBalancedTest {
 		assertEquals(false, ibtr.isBalanced(root));
 		
 	}
+	
+
 
 }
