@@ -24,9 +24,5 @@ public class IsBalancedTest {
 		root.left = left;
 		left.left = new TreeNode(3);
 		assertEquals(false, ibtr.isBalanced(root));
-		
 	}
-	
-
-
 }
