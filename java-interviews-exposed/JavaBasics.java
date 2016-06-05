@@ -20,10 +20,7 @@ public class JavaBasics {
 		//The final local variable i cannot be assigned. 
 		//It must be blank and not using a compound assignment
 
-		
-
-		
-		final List<String>  list = new ArrayList<>(20);
+				final List<String>  list = new ArrayList<>(20);
 		// list  = new ArrayList(50); // <- uncommeting this line would result in a compiler error
 		assertEquals(0, list.size());
 		
@@ -33,6 +30,12 @@ public class JavaBasics {
 		list.clear();
 		assertEquals(0, list.size());
 	
+	}
+	
+	@Test (expected = NullPointerException.class) 
+	public void expectNullPointerExceptionToBeThrown() {
+		final String s = null;
+		final int stringLength = s.length();
 	}
 
 }

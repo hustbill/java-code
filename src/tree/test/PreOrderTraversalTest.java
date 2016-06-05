@@ -16,20 +16,32 @@ import tree.TreeNode;
 
 public class PreOrderTraversalTest {
 	
-	@Test
-	public void test() {
-		TreeNode root = new TreeNode(1);
-		IsBalanced ibtr = new IsBalanced();
-		assertEquals(true, ibtr.isBalanced(root));
-		
-		TreeNode left = new TreeNode(2);
-		root.left = left;
-		left.left = new TreeNode(3);
-		assertEquals(false, ibtr.isBalanced(root));
-		
-	}
+	
 	@Test 
 	public void testPreOrderTraversal() {
+		//preorderTraversal
+		TreeNode root = new TreeNode(1);
+		TreeNode left = new TreeNode(2);
+		TreeNode right = new TreeNode(5);
+		root.left = left;
+		root.right = right;
+		
+		left.left = new TreeNode(3);
+		left.right = new TreeNode(4);
+		
+		right.left = new TreeNode(6);
+		right.right = new TreeNode(7);
+		
+		
+		PreOrderTraversal preOrder = new PreOrderTraversal();
+		List<Integer> result = Arrays.asList(1, 2, 3, 4, 5, 6, 7); 
+		
+		assertEquals(result, preOrder.preorderTraversal(root));
+		
+	}
+	
+	@Test 
+	public void testPreOrderTraversal_recursive() {
 		//preorderTraversal
 		TreeNode root = new TreeNode(1);
 		TreeNode left = new TreeNode(2);
@@ -42,7 +54,7 @@ public class PreOrderTraversalTest {
 		PreOrderTraversal preOrder = new PreOrderTraversal();
 		List<Integer> result = Arrays.asList(1, 2, 4, 3); 
 		
-		assertEquals(result, preOrder.preorderTraversal(root));
+		assertEquals(result, preOrder.preorderTraversal_recursive(root));
 		
 	}
 }

@@ -30,3 +30,5 @@ public class MyHashMapTest {
 	}
 
 }
+
+// reference: http://www.cnblogs.com/xwdreamer/archive/2012/05/14/2499339.html
