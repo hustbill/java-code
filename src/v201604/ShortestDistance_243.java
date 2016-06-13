@@ -1,5 +1,6 @@
+package v201604;
 /*
-243. Shortest Word Distance   My Submissions QuestionEditorial Solution
+243. Shortest Word Distance   
 Total Accepted: 10375 Total Submissions: 22370 Difficulty: Easy
 Given a list of words and two words word1 and word2, return the shortest distance between these two words in the list.
 
