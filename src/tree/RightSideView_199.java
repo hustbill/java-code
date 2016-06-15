@@ -1,3 +1,4 @@
+
 /*
 199. Binary Tree Right Side View My Submissions QuestionEditorial Solution
 Total Accepted: 43290 Total Submissions: 123548 Difficulty: Medium
@@ -20,16 +21,12 @@ Hide Tags Tree Depth-first Search Breadth-first Search
 Hide Similar Problems (M) Populating Next Right Pointers in Each Node
 
 */
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-public class RightSideView {
+
+package tree;
+
+import java.util.*;
+
+public class RightSideView_199 {
     public List<Integer> rightSideView_sol1(TreeNode root) {
        /* The core idea of this algorithm:
         1. Each depth of the tree only select one node
@@ -73,3 +70,13 @@ public class RightSideView {
          return list;
     } 
 }
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */

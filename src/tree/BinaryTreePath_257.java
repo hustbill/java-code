@@ -1,11 +1,10 @@
 /**
  * 
  */
-package v201605;
+package tree;
 
 import java.util.*;
 
-import tree.LevelOrderPrint;
 
 /**
  * @author huazhang

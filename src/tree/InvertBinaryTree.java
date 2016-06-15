@@ -1,12 +1,9 @@
-package v201605;
+package tree;
 
 import java.util.Deque;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Stack;
 
-import tree.LevelOrderPrint;
 
 public class InvertBinaryTree {
 
