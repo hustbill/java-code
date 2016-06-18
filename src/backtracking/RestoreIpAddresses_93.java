@@ -21,15 +21,42 @@ public class RestoreIpAddresses_93 {
 		RestoreIpAddresses_93 rp = new RestoreIpAddresses_93();
 		List<String> res = rp.restoreIpAddresses(s);
 		System.out.print(res);
+		
+		String s1 = "1921681127";
+		List<String> second = rp.restoreIp(s1);
+		// [19.216.81.127, 192.16.81.127, 192.168.1.127, 192.168.11.27, 192.168.112.7]
+		System.out.print(second);
 	}
 
+	public List<String> restoreIp(String s) {
+		List<String> res = new ArrayList<>();
+		dfs(s, 0, 0, "", res);
+
+		return res;
+
+	}
+	public void dfs(String s, int pos, int count,String restored, List<String> res) {
+		if (count > 4) return;
+		if (count == 4 && pos == s.length())  {
+			res.add(restored);
+		}
+		for (int i = 1; i <= 3; i++) {
+			if (pos + i > s.length())  break;
+			String ip = s.substring(pos, pos + i);
+			if ((ip.startsWith("0") && ip.length() > 1)  || (i == 3) && Integer.parseInt(ip) >= 256) {
+				continue;
+			}
+			
+			dfs(s, pos + i, count + 1,  restored +  ip  + (count == 3?  "" : "."), res);
+		}
+	}
+	
 	public List<String> restoreIpAddresses(String s) {
 		List<String> solutions = new ArrayList<>();
 		backtrack(s, solutions, 0, "", 0);
 		// restoreIp(s, solutions, 0, "", 0);
 		return solutions;
 	}
-
 
 	public void backtrack(String ip, List<String> solutions, int idx, String restored, int count) {
 		if (count > 4)
@@ -47,7 +74,7 @@ public class RestoreIpAddresses_93 {
 			}
 
 			backtrack(ip, solutions, idx + i, restored + s + (count == 3 ? "" : "."), count + 1);
-	
+
 		}
 
 	}
