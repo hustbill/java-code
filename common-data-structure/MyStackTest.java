@@ -7,7 +7,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-public class {
+public class MyStackTest {
 
   @Before
   public void setUp() throws Exception {
@@ -31,7 +31,7 @@ public class {
 
   @Test
   public void testStackList() {
-    MyStackList<Integer> stack = new MyStackList<Integer>();
+	  MyStackArray<Integer> stack = new MyStackArray<Integer>();
     stack.push(1);
     stack.push(2);
     stack.push(3);
