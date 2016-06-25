@@ -23,35 +23,30 @@ package dp;
 import java.util.Arrays;
 
 public class RangeSumQuery {
-	private int[] dp;
-	private int[] array;
+	private int[] sums;
+	// private int[] array;
 
 	public RangeSumQuery(int[] nums) {
-
-		array = new int[nums.length];
-		array = Arrays.copyOf(nums, nums.length);
-
-		if (nums == null || nums.length == 0) {
-			return;
-		}
-		dp = new int[nums.length];
-		dp[0] = nums[0];
-
+		// array = Arrays.copyOf(nums, nums.length); // 不需要了
 		for (int i = 1; i < nums.length; i++) {
-			dp[i] = dp[i - 1] + nums[i];
-			// System.out.printf("dp[%d] = %d \n", i, dp[i]);
+			 nums[i]  += nums[i - 1];
+			// System.out.printf("nums[%d] = %d \n", i, nums[i]);
 		}
-
+		sums = nums;
 	}
 
 	public int sumRange(int i, int j) {
-		if (i >= array.length || j >= array.length) return -1;
-		return dp[j] - dp[i] + array[i];
+		if (i == 0) {
+			return sums[j];
+		}
+		return sums[j] - sums[i - 1];
+		
+		// return dp[j] - dp[i] + array[i];  ==>  dp[j] - dp[i - 1]  避免了增加array数组
 	}
 
 	public static void main(String[] args) {
-		// int[] nums = {-2, 0, 3, -5, 2, -1};
-		int[] nums = {};
+		int[] nums = {-2, 0, 3, -5, 2, -1};
+		
 		RangeSumQuery rsq = new RangeSumQuery(nums);
 
 		System.out.println(rsq.sumRange(0, 2) == 1);
