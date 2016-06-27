@@ -31,7 +31,8 @@ public class PermutationII {
 
 	public List<List<Integer>> permuteUnique(int[] nums) {
 		// return permuteUniqueBacktrack(nums);
-		return permuteUniqueIterative(nums);
+		// return permuteUniqueIterative(nums);
+		return permuteUniqueSol2(nums);
 	}
 
 	public List<List<Integer>> permuteUniqueIterative(int[] nums) {
@@ -64,6 +65,38 @@ public class PermutationII {
 		}
 
 		return res;
+	}
+
+	/*
+	 * Sol2 : recursive without extra set or array to escape duplicate
+	 * 当操作是在一列数据的后面添加数据而不是在前面或中间,并且需要随机地访问其中的元素时,使用ArrayList会提供比较好的性能；
+	 * 当你的操作是在一列数据的前面或中间添加或删除数据,并且按照顺序访问其中的元素时,就应该使用LinkedList了。
+	 */
+	public List<List<Integer>> permuteUniqueSol2(int[] nums) {
+		List<List<Integer>> res = new ArrayList<>();
+
+		LinkedList<Integer> numList = new LinkedList<>();
+		for (int num : nums)
+			numList.add(num);
+
+		permute(numList, 0, res);
+		return res;
+	}
+
+	private void permute(LinkedList<Integer> numList, int start, List<List<Integer>> res) {
+		if (start == numList.size() - 1) {
+			res.add(new LinkedList<Integer>(numList));
+			return;
+		}
+		for (int i = start; i < numList.size(); i++) {
+			if (i > start && numList.get(i) == numList.get(i - 1))
+				continue;
+			numList.add(start, numList.get(i));
+			numList.remove(i + 1);
+			permute(numList, start + 1, res);
+			numList.add(i + 1, numList.get(start));
+			numList.remove(start);
+		}
 	}
 
 	public List<List<Integer>> permuteUniqueBacktrack(int[] nums) {
