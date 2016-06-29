@@ -20,7 +20,7 @@ import java.util.*;
 
 public class CollectiveHealth {
 	public boolean checkValid(String s) {
-	    static final Map<Character, Character> map  = 
+	    final Map<Character, Character> map  = 
 	        new HashMap<Character, Character>() {
 	            {
 	                put('(', ')');
