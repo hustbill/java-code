@@ -1,31 +1,10 @@
+package PocketGems;
 import java.io.*;
 import java.util.*;
 
 
 
-class Graph {
-    private Map<String, LinkedHashSet<String>> map = new HashMap<String, LinkedHashSet<String>>();
-
-    public void addEdge(String node1, String node2) {
-    	LinkedHashSet<String> adjacent = map.get(node1);
-        if(adjacent==null) {
-            adjacent = new LinkedHashSet<String>();
-            map.put(node1, adjacent);
-        }
-        adjacent.add(node2);
-    }
-
-    public LinkedList<String> adjacentNodes(String last) {
-        LinkedHashSet<String> adjacent = map.get(last);
-        
-        if(adjacent==null) {
-            return new LinkedList<String>();
-        }
-        return new LinkedList<String>(adjacent);
-    }
-}
-
-public class PathFinder {
+public class PathFinderSecond{
     public static void main(String[] args)
             throws FileNotFoundException, IOException {
         String filename = "input_2.txt";
@@ -85,7 +64,7 @@ public class PathFinder {
       String currentNode = start;
       List<String> visited = new ArrayList<String>();
       visited.add(start);
-      new PathFinder().dfs(graph, visited, paths, currentNode, end);
+      new PathFinderSecond().dfs(graph, visited, paths, currentNode, end);
       String nodes = "";
       //System.out.print(paths);
       /*for(ArrayList<String> path : paths){

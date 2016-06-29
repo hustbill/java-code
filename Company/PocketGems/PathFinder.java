@@ -29,7 +29,8 @@ import java.util.*;
 public class PathFinder {
     public static void main(String[] args)
             throws FileNotFoundException, IOException {
-        String filename = "input_1.txt";
+        //String filename = "./input_1.txt";
+    	String filename = "/Users/huazhang/git/java-code/Company/PocketGems/input_1.txt";
         if (args.length > 0) {
         	filename = args[0];
         }
