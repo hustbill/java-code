@@ -1,0 +1,7 @@
+1	user	user-level messages
+2	mail	mail system
+3	daemon	system daemons
+4	auth	security/authorization messages
+5	syslog	messages generated internally by syslogd
+6	lpr	    line printer subsystem
+7	news	network news subsystem
