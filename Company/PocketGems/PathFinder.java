@@ -1,29 +1,30 @@
+package PocketGems;
+
 import java.io.*;
 import java.util.*;
 
 
-
-class Graph {
-    private Map<String, LinkedHashSet<String>> map = new HashMap<String, LinkedHashSet<String>>();
-
-    public void addEdge(String node1, String node2) {
-    	LinkedHashSet<String> adjacent = map.get(node1);
-        if(adjacent==null) {
-            adjacent = new LinkedHashSet<String>();
-            map.put(node1, adjacent);
-        }
-        adjacent.add(node2);
-    }
-
-    public LinkedList<String> adjacentNodes(String last) {
-        LinkedHashSet<String> adjacent = map.get(last);
-        
-        if(adjacent==null) {
-            return new LinkedList<String>();
-        }
-        return new LinkedList<String>(adjacent);
-    }
-}
+//class Graph {
+//    private Map<String, LinkedHashSet<String>> map = new HashMap<String, LinkedHashSet<String>>();
+//
+//    public void addEdge(String node1, String node2) {
+//    	LinkedHashSet<String> adjacent = map.get(node1);
+//        if(adjacent==null) {
+//            adjacent = new LinkedHashSet<String>();
+//            map.put(node1, adjacent);
+//        }
+//        adjacent.add(node2);
+//    }
+//
+//    public LinkedList<String> adjacentNodes(String last) {
+//        LinkedHashSet<String> adjacent = map.get(last);
+//        
+//        if(adjacent==null) {
+//            return new LinkedList<String>();
+//        }
+//        return new LinkedList<String>(adjacent);
+//    }
+//}
 
 public class PathFinder {
     public static void main(String[] args)

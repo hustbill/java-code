@@ -1,3 +1,5 @@
+package PocketGems;
+
 import java.util.*;
 
 public class FindAllPaths {
@@ -31,7 +33,9 @@ public static void main(String[] args) {
     String currentNode = START;
     List<String> visited = new ArrayList<String>();
     visited.add(START);
-    new Search().findAllPaths(graph, seen, paths, currentNode);
+    FindAllPaths fp = new FindAllPaths();
+    
+    fp.findAllPaths(graph, visited, paths, currentNode);
     for(ArrayList<String> path : paths){
         for (String node : path) {
             System.out.print(node);
