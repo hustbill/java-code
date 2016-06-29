@@ -1,7 +1,13 @@
-*
+package YapStone;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+/*
  * Complete the function below.
  */
-
+public class YapStoneReformatDate {
     static String[] Reformat(String[] dates)  {
         String[] result = new String[dates.length];
         
@@ -53,3 +59,4 @@
 
 	    return df.format(startDate);
 	}
+}
