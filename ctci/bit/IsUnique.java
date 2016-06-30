@@ -1,3 +1,4 @@
+package bit;
 /* ctci page 99 
 Implement an algorithm to determinate if a string has all unique characters. 
 What if you cannot use additional data structure?
