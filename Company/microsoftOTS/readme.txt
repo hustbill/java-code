@@ -1,0 +1,1 @@
+Micorsoft Azure July 15 OTS
