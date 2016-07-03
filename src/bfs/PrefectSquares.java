@@ -30,7 +30,6 @@ public class PrefectSquares {
            }
            
            for (int k= 2;  k <= n; k++) {
-        	   int min=Integer.MAX_VALUE; 
         	  	for (int i = 1;  i * i <= k; i++) {
         	  		dp[k]  = Math.min(dp[k- i*i] + 1, dp[k] ) ;	
             	}
