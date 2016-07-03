@@ -24,13 +24,13 @@ public class PrefectSquares {
     	   int[] dp = new int[n+1];
            // 将所有非平方数的结果置最大，保证之后比较的时候不被选中
            Arrays.fill(dp, Integer.MAX_VALUE);
-          
            // 将所有平方数的结果置1
            for(int i = 0; i * i <= n; i++){
                dp[i * i] = 1;
            }
            
            for (int k= 2;  k <= n; k++) {
+        	   int min=Integer.MAX_VALUE; 
         	  	for (int i = 1;  i * i <= k; i++) {
         	  		dp[k]  = Math.min(dp[k- i*i] + 1, dp[k] ) ;	
             	}
