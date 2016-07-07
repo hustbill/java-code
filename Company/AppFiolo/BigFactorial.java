@@ -1,3 +1,5 @@
+package AppFiolo;
+
 /*
 Find the factorial of a number
 url: http://www.programmingsimplified.com/java/source-code/java-program-find-factorial

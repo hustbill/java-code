@@ -1,4 +1,7 @@
+package AppFiolo;
+
 /*
+ * 
 Name: FindCommonChars.java
 AppFiolo Interview questions
 Implement a method that takes 2 strings as input and returns a string with the common characters
@@ -23,17 +26,18 @@ public class FindCommonChars {
 		int m = str1.length();
 		int n = str2.length();
 		int p1 = 0, p2 = 0;
-		Set<character> set = new HashSet<>();
+		Set<Character> set = new HashSet<>();
 
 		for (int i=0; i < m ; i++) {
 			for (int j=0; j < n; j++) {
 				if (str1.charAt(i) == str2.charAt(j)) {
 					p1 = i;
-					set.add()
+					set.add(str1.charAt(i));
 				}
 			}
 		}
-	｝
+		return res;
+	}
 	
 	public static String findCommonChars2(String str1, String str2) {
 		String res = "";
