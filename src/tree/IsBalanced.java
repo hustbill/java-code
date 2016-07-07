@@ -4,7 +4,17 @@ public class IsBalanced {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		TreeNode root = new TreeNode(1);
+		TreeNode left = new TreeNode(2);
+		root.left = left;
+		root.right = new TreeNode(6);
 		
+		left.left = new TreeNode(3);
+		left.right = new TreeNode(4);
+		left.right.right = new TreeNode(5);
+
+		IsBalanced ib = new IsBalanced();
+		System.out.println(ib.isBalanced(root));
 
 	}
 	

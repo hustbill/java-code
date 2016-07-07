@@ -45,22 +45,29 @@ public class CombinationSum {
 	}
 
 	public void backtrack(int[] candid, int target, int pos, List<Integer> cur, List<List<Integer>> res) {
-		if ( target == 0) {
-			res.add(new ArrayList<Integer>(cur));  // 一定要 new ArrayList<Integer> 不能直接加 cur
-		}
-
-		for (int i = pos; i < candid.length && target >= candid[i]; i++) {
-			cur.add(candid[i]);
-			backtrack(candid, target - candid[i], i , cur, res);
-			cur.remove(cur.size() - 1);  // 记得回到上一层
-		}
+		if (target < 0) return;
+		
+		if (target == 0) {
+			res.add(new ArrayList<Integer>(cur)); // 一定要 new ArrayList<Integer>
+													// 不能直接加 cur
+		} 
+		
+		for (int i = pos; i < candid.length ; i++) {
+			if(candid[i] > target) continue;
+				cur.add(candid[i]);
+				backtrack(candid, target - candid[i], i, cur, res);
+				cur.remove(cur.size() - 1); // 记得回到上一层
+			}
+	
 
 	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] candidates = { 2, 3, 6, 7 };
-		int target = 7;
+		// int[] candidates = { 2, 3, 6, 7 };
+		int[] candidates = { 8, 7, 4, 3 };
+		// int target = 7;
+		int target = 11;
 		CombinationSum cmbs = new CombinationSum();
 		List<List<Integer>> result = cmbs.combinationSum(candidates, target);
 		System.out.println(result);

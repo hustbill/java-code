@@ -13,13 +13,13 @@ public class MultiThreadDemo extends Thread {
 	}
 
 	public void run() {
-		lock.lock();
+		//lock.lock();
 		 
 		 while (val < 100) { 
 			int name = val % 3 == 0 ? 3 : val % 3;
 			System.out.println("T" + name + " : " + val++);
 		}
-		lock.unlock();
+		//lock.unlock();
 
 	}
 

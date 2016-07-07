@@ -1,5 +1,6 @@
 import java.util.*;
 import java.util.function.*;
+import java.util.stream.Stream;
 
 
 class StreamDemo {
@@ -16,7 +17,7 @@ class StreamDemo {
         List<String> list = Arrays.asList(strArray);
         stream = list.stream();
 
-     // Stream stream  = Stream.of(1,2, 3, 4, 5);
-  //    Stream.forEach(p -> System.out.println(p));
+      Stream numStream  = Stream.of(1,2, 3, 4, 5);
+      numStream.forEach(p -> System.out.println(p));
     }
 }

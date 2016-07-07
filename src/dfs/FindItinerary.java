@@ -32,7 +32,7 @@ public class FindItinerary {
 	 * 有向图 欧拉回路 DFS解法， 
 	 * 数据结构： HashMap<String, PriorityQueue<Strinig>> flights,  queue记录arrivals
 	 * 每次终点 就是下一次的起点
-	 * 
+	 *  https://leetcode.com/discuss/84702/share-my-solution
 	 * All the airports are vertices and tickets are directed edges. Then all
 	 * these tickets form a directed graph.
 	 * 

@@ -22,9 +22,10 @@ public class GeneralizedAbbreviation {
 		 * https://discuss.leetcode.com/topic/32765/java-14ms-beats-100
 		 * 
 		 * 
-		 * idea: for each character, we can keep it or abbreviate it. 
+		 * idea: for each character, we can keep it or abbreviate it.
 		 * 
-		 * 1) To keep it, we add it to the current position and carry on backtracking.
+		 * 1) To keep it, we add it to the current position and carry on
+		 * backtracking.
 		 * 
 		 * 2) To abbreviate it, we omit it in the current solution, but
 		 * increment the count, which indiciates how many chars have we

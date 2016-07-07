@@ -19,6 +19,7 @@ package hashtable;
 import java.util.*;
 
 public class TopKFrequent {
+
 	
 	// Bucket sort  O(n), beat 87.19% javasubmissions
 	// Idea is simple. Build a array of list to be buckets with length 1 to sort.
@@ -97,6 +98,23 @@ public class TopKFrequent {
 	 * complexity should be O(N + Nlgk), or just O(Nlgk).
 	 */
 
+	
+	// https://leetcode.com/discuss/102558/java8-functional-solution
+//	public static List<Integer> topKFrequentJava8(int[] nums, int k) {
+//	    Map<Integer, Integer> counter = new HashMap<>();
+//	    for (int num : nums) {
+//	        counter.putIfAbsent(num, 0);
+//	        counter.computeIfPresent(num, (key, oldVal) -> oldVal + 1);
+//	    }
+//	    return counter.entrySet()
+//	            .stream()
+//	            .sorted(Comparator.comparing(Map.Entry<Integer, Integer>::getValue).reversed())
+//	            .limit(k)
+//	            .map(Map.Entry::getKey)
+//	            .collect(Collectors.toList());
+//	}
+	
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int[] nums = { 1, 1, 1, 2, 2, 3 };

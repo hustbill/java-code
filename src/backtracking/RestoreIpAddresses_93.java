@@ -43,18 +43,20 @@ public class RestoreIpAddresses_93 {
 		for (int i = 1; i <= 3; i++) {
 			if (pos + i > s.length())  break;
 			String ip = s.substring(pos, pos + i);
-			if ((ip.startsWith("0") && ip.length() > 1)  || (i == 3) && Integer.parseInt(ip) >= 256) {
-				continue;
+			if( isValidPart(ip))  {
+				
+				dfs(s, pos + i, count + 1,  restored +  ip  + (count == 3?  "" : "."), res);
 			}
-			
-			dfs(s, pos + i, count + 1,  restored +  ip  + (count == 3?  "" : "."), res);
 		}
+	}
+	
+	public boolean isValidPart(String ip) {
+		return !((ip.startsWith("0") && ip.length() > 1) || Integer.parseInt(ip) >=256);
 	}
 	
 	public List<String> restoreIpAddresses(String s) {
 		List<String> solutions = new ArrayList<>();
 		backtrack(s, solutions, 0, "", 0);
-		// restoreIp(s, solutions, 0, "", 0);
 		return solutions;
 	}
 

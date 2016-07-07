@@ -3,7 +3,8 @@
 Total Accepted: 31720
 Total Submissions: 120717
 Difficulty: Medium
-Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times. The algorithm should run in linear time and in O(1) space.
+Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times. 
+The algorithm should run in linear time and in O(1) space.
 
 Hint:
 
@@ -19,7 +20,7 @@ package array;
 import java.util.*;
 
 public class MajorityElementII {
-//https://discuss.leetcode.com/topic/29390/concise-java-solution-based-on-moore-s-voting-algorithm/5
+	// https://discuss.leetcode.com/topic/29390/concise-java-solution-based-on-moore-s-voting-algorithm/5
 	public List<Integer> majorityElement(int[] nums) {
 		List<Integer> res = new ArrayList<>();
 		if (nums == null || nums.length == 0)

@@ -37,8 +37,7 @@ public class SearchInRoatedArrayLinkedIn {
 		// https://leetcode.com/discuss/11701/concise-o-log-n-binary-search-solution
 		// Date : 2016.04.03 it is easy to present in the interview - Linkedin
 		// Phone interview.
-		// int n = nums.length;
-		// int lo=0, hi = n - 1;
+
 		// find the index of the smallest value using binary search.
 		// Loop will terminate since mid < hi, and lo or hi will shrink by at
 		// least 1.

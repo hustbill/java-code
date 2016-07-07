@@ -13,19 +13,17 @@ Hide Company Tags Amazon Facebook
 Hide Tags Linked List Two Pointers
 Hide Similar Problems (E) Palindrome Number (E) Valid Palindrome (E) Reverse Linked List
 */
-
 /**
  * Definition for singly-linked list.
  */
-class ListNode {
-	int val;
-	ListNode next;
-
-	ListNode(int x) {
-		val = x;
-	}
-}
-
+//class ListNode {
+//	int val;
+//	ListNode next;
+//
+//	ListNode(int x) {
+//		val = x;
+//	}
+//}
 public class IsPalindrome_234 {
 	public static void main(String[] args) {
 		ListNode root  = new ListNode(1);
