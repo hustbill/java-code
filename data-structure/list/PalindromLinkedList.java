@@ -1,9 +1,9 @@
 /*
  * 
  */
-package lists;
+package list;
 
-public class PalindromeLinkedList {
+public class PalindromLinkedList {
 
 	public boolean isPalindrome(ListNode head) {
 		ListNode fast = head;
@@ -37,10 +37,9 @@ public class PalindromeLinkedList {
 		}
 		return prev;
 	}
-	
 
 	public static void main(String[] args) {
-		PalindromeLinkedList pl = new PalindromeLinkedList();
+		PalindromLinkedList pl = new PalindromLinkedList();
 		ListNode head = new ListNode(1);
 		ListNode next = new ListNode(2);
 		head.next = next;
