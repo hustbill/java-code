@@ -24,6 +24,26 @@ Hide Company Tags LinkedIn
 Hide Tags Hash Table Design
 Hide Similar Problems (E) Merge Two Sorted Lists (E) Shortest Word Distance (M) Shortest Word Distance III
 
+
+245. Shortest Word Distance III  QuestionEditorial Solution  My Submissions
+Total Accepted: 8612
+Total Submissions: 18423
+Difficulty: Medium
+This is a follow up of Shortest Word Distance. The only difference is now word1 could be the same as word2.
+
+Given a list of words and two words word1 and word2, return the shortest distance between these two words in the list.
+
+word1 and word2 may be the same and they represent two individual words in the list.
+
+For example,
+Assume that words = ["practice", "makes", "perfect", "coding", "makes"].
+
+Given word1 = “makes”, word2 = “coding”, return 1.
+Given word1 = "makes", word2 = "makes", return 3.
+
+Note:
+You may assume word1 and word2 are both in the list.
+
  */
 package array;
 
@@ -33,6 +53,7 @@ public class WordDistance {
 
 	HashMap<String, List<Integer>> map;
 
+	// 244. Shortest Word Distance II 
 	public WordDistance(String[] words) { // beat 94.69% java
 		map = new HashMap<String, List<Integer>>();
 		for (int i = 0; i < words.length; i++) {
@@ -46,6 +67,22 @@ public class WordDistance {
 			}
 		}
 	}
+	
+	// 245 word distance III
+    public int shortestWordDistance(String[] words, String word1, String word2) {
+        int index = -1;
+        int min = words.length;
+        for (int i = 0; i < words.length; i++) {
+            if (words[i].equals(word1) || words[i].equals(word2)) {
+                if (index != -1 && (word1.equals(word2) || !words[index].equals(words[i]))) {
+                    min = Math.min(i - index, min);
+                }
+                index = i;
+            }
+        }
+        return min;
+}
+    
 
 	public int shortest(String word1, String word2) {
 		int min = Integer.MAX_VALUE;
