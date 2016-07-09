@@ -1,4 +1,4 @@
-package old;
+package string;
 // write a method to replace all whites spaces in a string with 20%
 // new York --> new%20York20%20%
 // Date: March 15, 2016
