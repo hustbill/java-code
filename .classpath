@@ -4,7 +4,6 @@
 	<classpathentry kind="src" path="java-interviews-exposed"/>
 	<classpathentry kind="src" path="Company"/>
 	<classpathentry kind="src" path="ctci"/>
-	<classpathentry kind="src" path="data-structure"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
