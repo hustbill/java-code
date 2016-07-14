@@ -43,8 +43,6 @@ package ood;
 
 import java.util.*;
 
-public class DesignTwitter {
-
 	public class Twitter {
 
 	    /** Initialize your data structure here. */
@@ -59,7 +57,7 @@ public class DesignTwitter {
 	    
 	    /** Retrieve the 10 most recent tweet ids in the user's news feed. Each item in the news feed must be posted by users who the user followed or by the user herself. Tweets must be ordered from most recent to least recent. */
 	    public List<Integer> getNewsFeed(int userId) {
-	        
+	        return new ArrayList<Integer>();
 	    }
 	    
 	    /** Follower follows a followee. If the operation is invalid, it should be a no-op. */
@@ -71,7 +69,7 @@ public class DesignTwitter {
 	    public void unfollow(int followerId, int followeeId) {
 	        
 	    }
-	}
+	
 
 	/**
 	 * Your Twitter object will be instantiated and called as such:
@@ -83,7 +81,14 @@ public class DesignTwitter {
 	 */
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		Twitter obj = new Twitter();
+		int userId = 1, tweetId = 101;
+		int followerId = 2, followeeId = 1;
+		
+		 obj.postTweet(userId,tweetId);
+		 List<Integer> param_2 = obj.getNewsFeed(userId);
+		 obj.follow(followerId,followeeId);
+		 obj.unfollow(followerId,followeeId);
 
 	}
 
