@@ -26,6 +26,8 @@ public class LowestCommonAncestor {
 	public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 		
 		/* https://leetcode.com/discuss/45399/my-java-solution-which-is-easy-to-understand
+		 * 
+		 * leEco phone interview question  July 14, 2016
 		 * 		  ___ 1_____
 		 * 		/           \
 		 * 	__2 ___       __ 3 ___
