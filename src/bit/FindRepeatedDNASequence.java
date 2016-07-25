@@ -4,6 +4,7 @@ import java.util.*;
 
 public class FindRepeatedDNASequence {
 	/*
+	 * Solution 1: bit
 	 * https://discuss.leetcode.com/topic/8894/clean-java-solution-hashmap-bits-
 	 * manipulation/3 The key point is that it is not doing hash, it is doing
 	 * the exact coding of a 10-letter sequence into a 4-bytes number, which is
@@ -51,6 +52,24 @@ public class FindRepeatedDNASequence {
 			}
 		}
 		return rv;
+	}
+
+	// use two hashsets, beat 90%
+	/*
+	 * my idea is to get all the possible 10 letter long sequences and put them
+	 * into set, it the operation failed, it means there are duplicates. so put
+	 * the sequence into another set("AAAAAAAAAAAA" could have three
+	 * "AAAAAAAAAA" sequences, so this set will remove the duplicates) 
+	 */
+
+	public List<String> findRepeatedDnaSequencesSet(String s) {
+		Set seen = new HashSet(), repeated = new HashSet();
+		for (int i = 0; i + 9 < s.length(); i++) {
+			String ten = s.substring(i, i + 10);
+			if (!seen.add(ten))
+				repeated.add(ten);
+		}
+		return new ArrayList(repeated);
 	}
 
 	public static void main(String[] args) {
