@@ -21,13 +21,15 @@ public class LoginRateLimit {
 
 	// accept or reject a request, called when request is received
 	public boolean allowThisRequest() {
-		long crtTime = System.currentTimeMillis();
-		if (crtTime - latestStart >= serviceTime) {
-			latestStart = crtTime; // restart
-			// launch login service here
-			return true;
-		} else {
-			return false;
+		long currentTime = System.currentTimeMillis();
+		synchronized(this) { 
+			if (currentTime - latestStart >= serviceTime) {
+				latestStart = currentTime; // restart
+				// launch login service here
+				return true;
+			} else {
+				return false;
+			}
 		}
 	}
 
