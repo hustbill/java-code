@@ -9,61 +9,92 @@ import java.util.regex.*;
 
 public class Solution {
 
-	static String[] animate(int speed, String init) {
-		return new String[2];
+	public static String[] animate(int speed, String init) {
+
+		List<List<Particle>> lists = new ArrayList<>();
+		List<String> res = new ArrayList<>();
+
+		for (int i = 0; i < init.length(); i++) {
+			lists.add(new ArrayList<>());
+			char c = init.charAt(i);
+			if (c == 'R') {
+				lists.get(i).add(new Particle(speed));
+			} else if (c == 'L') {
+				lists.get(i).add(new Particle(-speed));
+			}
+		}
+
+		while (checkRemain(lists)) {
+			res.add(convert(lists));
+			lists = nextStep(lists);
+		}
+		res.add(convert(lists));
+
+		String[] result = new String[res.size()];
+		int index = 0;
+		for (String s : res) {
+			result[index++] = s;
+		}
+
+		return result;
+
+	}
+
+	private static List<List<Particle>> nextStep(List<List<Particle>> lists) {
+		List<List<Particle>> res = new ArrayList<>();
+
+		// initial next step map
+		for (int i = 0; i < lists.size(); i++)
+			res.add(new ArrayList<>());
+
+		for (int i = 0; i < lists.size(); i++) {
+			List<Particle> list = lists.get(i);
+
+			for (Particle p : list) {
+				int nextPos = i + p.speed;
+				if (nextPos < 0 || nextPos >= lists.size())
+					continue;
+				res.get(nextPos).add(new Particle(p.speed));
+			}
+		}
+		return res;
+	}
+
+	private static boolean checkRemain(List<List<Particle>> lists) {
+		for (List<Particle> list : lists) {
+			if (!list.isEmpty())
+				return true;
+		}
+		return false;
+	}
+
+	private static String convert(List<List<Particle>> lists) {
+		StringBuilder sb = new StringBuilder();
+
+		for (List<Particle> list : lists) {
+			if (list.isEmpty())
+				sb.append('.');
+			else
+				sb.append('X');
+		}
+		return sb.toString();
 	}
 
 	public static void main(String[] args) throws IOException {
-		
-		res = animate(_speed, _init);
+
+		// int speed = 2;
+		// String init = "..R....";
+
+		int speed = 3;
+		String init = "RR..LRL";
+
+		String[] res = animate(speed, init);
 
 		for (int res_i = 0; res_i < res.length; res_i++) {
 
-			bw.write(String.valueOf(res[res_i]));
-
-			bw.newLine();
+			System.out.println(String.valueOf(res[res_i]));
 
 		}
-	}
-	
-	public static void read(String[] args) throws IOException {
-
-		Scanner in = new Scanner(System.in);
-
-		final String fileName = System.getenv("OUTPUT_PATH");
-
-		BufferedWriter bw = new BufferedWriter(new FileWriter(fileName));
-
-		String[] res;
-
-		int _speed;
-
-		_speed = Integer.parseInt(in.nextLine().trim());
-
-		String _init;
-
-		try {
-
-			_init = in.nextLine();
-
-		} catch (Exception e) {
-
-			_init = null;
-
-		}
-
-		res = animate(_speed, _init);
-
-		for (int res_i = 0; res_i < res.length; res_i++) {
-
-			bw.write(String.valueOf(res[res_i]));
-
-			bw.newLine();
-
-		}
-
-		bw.close();
-
 	}
 
 }
