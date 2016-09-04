@@ -58,9 +58,7 @@ public class Subsets76 {
 			// cur.remove(nums[i]);
 			System.out.print(cur);
 			cur.remove(cur.size());
-
 		}
-
 	}
 
 }
