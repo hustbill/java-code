@@ -66,22 +66,26 @@ public class ReorderList {
 	        
 	    }
 	
-	 // http://blog.csdn.net/beiyetengqing/article/details/7596554
-	 public ListNode reverseList(ListNode cur) {
-		 //initialization  
-		 ListNode prev = null;
-		 ListNode next = null;
-		 
-		 while (cur != null) {
-		    //save the next node  
-			next = cur.next;
-	        //update the value of "next" 
-			cur.next = prev;
-			//shift the pointers 
-			prev = cur;
-			cur = next;
-		 }
-		 return prev;
-	 }
+	 
+	 public ListNode reverseList(ListNode head) {
+		 /*
+	        head  |    head     newHead
+	    4 1 3 5   |    1 3 5     4
+	      1 3 5   |    3  5      1 4
+	        3 5   |    5         3 1 4
+	          5   |    null      5 3 1 4       
+	     https://leetcode.com/discuss/34474/in-place-iterative-and-recursive-java-solution
+	        
+	        */
+	        ListNode newHead = null;
+	        
+	        while (head !=null) {
+	            ListNode next = head.next;
+	            head.next = newHead;
+	            newHead = head;
+	            head = next;
+	        }
+	        return newHead;
+	    }
 
 }

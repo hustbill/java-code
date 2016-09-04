@@ -1,5 +1,5 @@
 /*
- * 68. Text Justification  QuestionEditorial Solution  My Submissions
+ * 68. Text Justification
 Total Accepted: 36777
 Total Submissions: 220301
 Difficulty: Hard
