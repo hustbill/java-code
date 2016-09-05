@@ -32,7 +32,7 @@ public class SearchInRoatedArrayLinkedIn {
 	
 		System.out.println(search(array, 2)); // 3
 		System.out.println(searchInRotatedArrayWithDuplicates(array, 2));  // true
-		System.out.println(searchInRoatedArrayWithDuplicates(array, 2)); //3
+		System.out.println(findInRotatedArrayWithDuplicates(array, 2)); //3
 	}
 
 	// this solution is able to solve {1, 1, 2, 1, 1, 1, 1, 1, 1, 1} 2 => 2
@@ -177,7 +177,8 @@ public class SearchInRoatedArrayLinkedIn {
 		return false;
 	}
 	
-	public static int searchInRoatedArrayWithDuplicates(int[] nums, int target) {
+	// find the index of the target in the rotated array with duplicates
+	public static int findInRoatedArrayWithDuplicates(int[] nums, int target) {
 		int start = 0, end = nums.length - 1;
 
 		// check each num so we will check start == end
