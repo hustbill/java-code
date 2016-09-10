@@ -27,25 +27,26 @@ Search for 7
 public class SearchInRoatedArrayLinkedIn {
 	public static void main(String[] args) {
 		// int[] array = {1, 2, 1, 1, 1};
-		int[] arrayWithDuplicates = { 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1 };
-		int[] array = { 6, 7, 1, 2, 3, 4, 6 };
+		int[] numsWithDuplicates = { 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1 };
+		int[] nums = { 6, 7, 1, 2, 3, 4};
 
-		System.out.println(search(array, 2)); // 3
-		System.out.println(searchInRotatedArrayWithDuplicates(array, 2)); // true
-		System.out.println(findInRotatedArrayWithDuplicates(array, 2)); // 3
+		System.out.println(search(nums, 2)); // 3
+		System.out.println(searchInRotatedArrayWithDuplicates(numsWithDuplicates, 2)); // true
+		System.out.println(findInRotatedArrayWithDuplicates(numsWithDuplicates, 2)); // 3
+		
+		System.out.println(findMin(nums));  //153. Find Minimum in Rotated Sorted Array
+		System.out.println(findMinWithDuplicates(numsWithDuplicates));
 	}
 
 	/*
-	 * 153. Find Minimum in Rotated Sorted Array
-	 * Difficulty: Medium 
-	 * Suppose a sorted array is rotated at some pivot
-	 * unknown to you beforehand.
+	 * 153. Find Minimum in Rotated Sorted Array Difficulty: Medium Suppose a
+	 * sorted array is rotated at some pivot unknown to you beforehand.
 	 * 
 	 * (i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).
 	 * 
 	 * Find the minimum element.
 	 */
-	public int findMin(int[] nums) {
+	public static int findMin(int[] nums) {
 		// find the index of the smallest value using binary search.
 		// Loop will terminate since mid < hi, and lo or hi will shrink by at
 		// least 1.
@@ -65,6 +66,35 @@ public class SearchInRoatedArrayLinkedIn {
 		// start == end is the smallest value and also the number of places
 	}
 
+	/*
+	154. Find Minimum in Rotated Sorted
+	 * Array II QuestionEditorial Solution My Submissions Total Accepted: 59497
+	 * Total Submissions: 168017 Difficulty: Hard Follow up for
+	 * "Find Minimum in Rotated Sorted Array": What if duplicates are allowed?
+	 * 
+	 * Would this affect the run-time complexity? How and why?
+	 */
+	  public static int findMinWithDuplicates(int[] nums)  {
+		        // find the index of the smallest value using binary search.
+		         // https://leetcode.com/discuss/19746/my-pretty-simple-code-to-solve-it
+		        // When num[mid] == num[hi], we couldn't sure the position of minimum in mid's left or right, so just let upper bound reduce one.
+				int start = 0, end = nums.length - 1;
+
+				while (start < end) {
+					int mid = start + (end - start) / 2;
+					if (nums[end] < nums[mid]) {
+						start = mid + 1; // 转折点在mid 的右侧
+					} else if (nums[end] > nums[mid]) {
+						end = mid;
+					}  else { // duplicates
+					    end--;
+					}
+				}
+				return nums[start];
+				// start == end is the smallest value and also the number of places
+	 }
+	
+	
 	// this solution is able to solve {1, 1, 2, 1, 1, 1, 1, 1, 1, 1} 2 => 2
 	// this solution is able to solve {1, 1, 1, 1, 2, 1, 1, 1, 1, 1} 2 => 4
 	// but failed at {1, 1, 1, 2, 1, 1, 1, 1, 1, 1} 2 => -1

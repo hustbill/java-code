@@ -7,78 +7,87 @@ import java.math.*;
 
 import java.util.regex.*;
 
+class Particle {
+    int speed = 0;
+    public Particle(int speed) {
+        this.speed = speed;
+    }
+}
+
 public class Solution {
 
-	public static String[] animate(int speed, String init) {
+	/*
+	 * Complete the function below.
+	 */
 
-		List<List<Particle>> lists = new ArrayList<>();
-		List<String> res = new ArrayList<>();
+	   
+	    static String[] animate(int speed, String init) {
+	        List<List<Particle>> lists = new ArrayList<>();
+	        List<String> res = new ArrayList<>();
+	        
+	        for (int i = 0; i < init.length(); i++) {
+	            lists.add(new ArrayList<>());
+	            char c = init.charAt(i);
+	            if (c == 'R') {
+	                lists.get(i).add(new Particle(speed));
+	            } else if (c == 'L'){
+	                lists.get(i).add(new Particle(-speed));
+	            }
+	        }
+	        
+	        while(checkRemain(lists)) {
+	            res.add(convert(lists));
+	            lists = nextStep(lists);
+	        }
+	        res.add(convert(lists));
+	        String[] result = new String[res.size()];
+	        int index = 0;
+	        for (String s : res) {
+	            result[index++] = s;
+	        }
+	        return result;
+	    }
 
-		for (int i = 0; i < init.length(); i++) {
-			lists.add(new ArrayList<>());
-			char c = init.charAt(i);
-			if (c == 'R') {
-				lists.get(i).add(new Particle(speed));
-			} else if (c == 'L') {
-				lists.get(i).add(new Particle(-speed));
-			}
-		}
+	    private static List<List<Particle>> nextStep(List<List<Particle>> lists) {
+	       List<List<Particle>> res = new ArrayList<>();
+	       for (int i = 0; i< lists.size(); i++) {
+	           res.add(new ArrayList<>());
+	       }
+	       for (int i = 0; i < lists.size(); i++) {
+	           List<Particle> list = lists.get(i);
+	           for (Particle p : list) {
+	               int nextPos = i + p.speed;
+	               if (nextPos < 0 || nextPos >= lists.size()) {
+	                   continue;
+	               }
+	               res.get(nextPos).add(new Particle(p.speed));
+	           }
+	       }
+	        return res;
+	    }
 
-		while (checkRemain(lists)) {
-			res.add(convert(lists));
-			lists = nextStep(lists);
-		}
-		res.add(convert(lists));
 
-		String[] result = new String[res.size()];
-		int index = 0;
-		for (String s : res) {
-			result[index++] = s;
-		}
+	    private static boolean checkRemain(List<List<Particle>> lists) {
+	        for (List<Particle> list : lists) {
+	            if (!list.isEmpty()) {
+	                return true;
+	            }
+	        }
+	        return false;
+	    }
 
-		return result;
 
-	}
+	    private static  String convert(List<List<Particle>> lists) {
+	        StringBuilder sb = new StringBuilder();
+	        for (List<Particle> list : lists) {
+	            if (list.isEmpty()) 
+	                sb.append('.');
+	            else 
+	                sb.append('X');
+	        }
+	        return sb.toString();
+	    }
 
-	private static List<List<Particle>> nextStep(List<List<Particle>> lists) {
-		List<List<Particle>> res = new ArrayList<>();
-
-		// initial next step map
-		for (int i = 0; i < lists.size(); i++)
-			res.add(new ArrayList<>());
-
-		for (int i = 0; i < lists.size(); i++) {
-			List<Particle> list = lists.get(i);
-
-			for (Particle p : list) {
-				int nextPos = i + p.speed;
-				if (nextPos < 0 || nextPos >= lists.size())
-					continue;
-				res.get(nextPos).add(new Particle(p.speed));
-			}
-		}
-		return res;
-	}
-
-	private static boolean checkRemain(List<List<Particle>> lists) {
-		for (List<Particle> list : lists) {
-			if (!list.isEmpty())
-				return true;
-		}
-		return false;
-	}
-
-	private static String convert(List<List<Particle>> lists) {
-		StringBuilder sb = new StringBuilder();
-
-		for (List<Particle> list : lists) {
-			if (list.isEmpty())
-				sb.append('.');
-			else
-				sb.append('X');
-		}
-		return sb.toString();
-	}
 
 	public static void main(String[] args) throws IOException {
 
