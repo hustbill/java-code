@@ -6,22 +6,31 @@ class RotateIndex {
             int[] nums = { 0, 1, 2, 3};
             List<List<Integer>> res = ri.permute(nums);
             //System.out.print(res);
-            
+            for (int k = nums.length -1 ; k >= 0; k--) {
+                rotate()
+                    max  = 
+            }
             System.out.println(ri.rotate(nums));
     }
     
-    private String rotate(int[] nums) {
+    private List<List<Integer>> rotate(int[] nums, k) {
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> intList = new ArrayList<Integer>();
+            for (int index = 0; index < nums.length; index++){
+                intList.add(nums[index]);
+            }    
+            
+            
         int k = nums.length - 1;
-        String old = Arrays.toString(nums);
         
-        StringBuilder sb = new StringBuilder();        
-        sb.append(old.substring(k, old.length()));
-        sb.append(old.substring(0, k));
-        char[] arr = sb.toString().toCharArray();
-        for (char c : arr) {
-            System.out.println(c);
+    }
+    
+    private int sum(int[] nums) {
+        int[] indexArr = new int[nums.length];
+        for (int i = 0; i < indexArr.length; i++) {
+            indexArr[i] = i;
+            sum += indexArr[i] * nums[i];
         }
-        return sb.toString();
         
     }
     
