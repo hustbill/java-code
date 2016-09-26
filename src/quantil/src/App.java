@@ -22,8 +22,8 @@ public class App {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		DateFormat  dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		Date date = new Date();
-		int numOfServers = 10;
-		/*
+		int numOfServers = 0;
+		
 		try {
 			System.out.println("Enter a data(yyyy/MM/dd) : \n");
 			String s = br.readLine();
@@ -33,7 +33,7 @@ public class App {
 		} catch(Exception e) {
 			System.out.println("Error: " + e.toString());
 			System.out.println("Please try again");
-		}*/
+		}
 		
 		  System.out.println("现在的日期是 = " + date.toString()); 
 		System.out.println(numOfServers);

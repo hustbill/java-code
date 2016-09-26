@@ -9,13 +9,12 @@ public class Generator {
 	private long startTime;
 
 	public Generator(Server[] servers,  Date date) {
-		System.out.println("Generator");
 		this.servers = servers;
 		this.startTime = date.getTime() / 1000L;
 	}
 	
 	public void generateAllData() {
-		System.out.println("generateAllData");
+		System.out.println("content");
 		for (int i = 0; i < servers.length; i++) {
 			generateDataPerServer(servers[i]);
 		}
