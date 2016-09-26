@@ -1,10 +1,8 @@
-package quantil.model;
-
 public class Server {
 	private int cpu1;
 	private int cpu2;
-	
 	private String ip;
+	private String logPath;
 	
 	public Server(String ip) {
 		this.ip = ip;
@@ -30,5 +28,18 @@ public class Server {
 	
 	public int getCPU2() {
 		return cpu2;
+	}
+	
+	public void setCPU(int cpu1, int cpu2) {
+		this.cpu1 = cpu1;
+		this.cpu2 = cpu2;
+	}
+	
+	public void setLogPath(String path) {
+		this.logPath = path;
+	}
+	
+	public String getLogPath() {
+		return logPath;
 	}
 }
