@@ -2,11 +2,11 @@ Java concept and coding questions
 =================================
 
 
-##Version history
+##Version history  
 Init   Date: July 5, 2014   
 Update Date: March 25, 2015  
-Update Date: May 20, 2016
-Update Date: June 16, 2016 for design twitter 
+Update Date: May 20, 2016  
+Update Date: June 16, 2016 for design twitter   
 
 ## Java Data format 
 
