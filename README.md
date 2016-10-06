@@ -60,4 +60,4 @@ If you find a issue or more optimial solution,  feel free to email me.
 
 Thanks, Hua :-)  
 
-Email: hua.zhang@wsu.edu    
+Email: billyzhang2010@gmail.com 
