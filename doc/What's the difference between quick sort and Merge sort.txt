@@ -1,0 +1,72 @@
+What's the difference between quick sort and Merge sort? What's the worst cases for both?
+
+Ans:   the difference between  Merge sort and Quick sort
+
+
+Time complexity: Merge Sort	worst case is O(n*log(n), Quicksort degrades to O(n^2) 
+Space complexity:  Quick sort is space constant where Merge sort depends on the structure you're sorting. For example,
+    On arrays, merge sort requires O(n) space; 
+    on linked lists, merge sort requires constant space
+
+Worst cases for Quick sort :
+1) Array is already sorted in same order.
+2) Array is already sorted in reverse order.
+3) All elements are same (special case of case 1 and 2)
+4) if the input array is such that the maximum (or minimum) element is always chosen as pivot
+
+The worst case of merge sort will be the one where merge sort will have to do maximum number of comparisons.
+Suppose the array in final step after sorting is {0,1,2,3,4,5,6,7}
+For worst case the array before this step must be {0,2,4,6,1,3,5,7} because here left subarray={0,2,4,6} and right subarray={1,3,5,7} will result in maximum comparisons.
+
+
+
+
+
+The answer depends on strategy for choosing pivot. In early versions of Quick Sort where leftmost (or rightmost) element is chosen as pivot, the worst occurs in following cases.
+
+1) Array is already sorted in same order.
+2) Array is already sorted in reverse order.
+3) All elements are same (special case of case 1 and 2)
+4) 
+
+
+
+Quick sort is typically faster than merge sort when the data is stored in memory. However, when the data set is huge and is stored on external devices such as a hard drive, merge sort is the clear winner in terms of speed. It minimizes the expensive reads of the external drive and also lends itself well to parallel computing.
+
+
+
+
+Since these cases are very common use cases, the problem was easily solved by choosing either a random index for the pivot, choosing the middle index of the partition or (especially for longer partitions) choosing the median of the first, middle and last element of the partition for the pivot. With these modifications, the worst case of Quick sort has less chances to occur, but worst case can still occur 
+
+
+
+Quicksort	O(n*log(n))	O(n*log(n))	O(n^2)	Constant	Stable	
+
+
+Randomly picking a pivot value (or shuffling the array prior to sorting) can help avoid worst case scenarios such as a perfectly sorted array.
+
+
+
+
+
+For Merge sort worst case is O(n*log(n)), for Quick sort: O(n^2). For other cases (avg, best) both have O(n*log(n)). However Quick sort is space constant where Merge sort depends on the structure you're sorting.
+
+
+
+
+
+
+
+
+In general, merge sort is O(n log n) and quick sort is O(n log n). The two main differences are that 1) quick sort can have a degradation in performance if the pivot point is chosen poorly (O(n^2)),
+
+
+
+ 2) quick sort does not require the extra storage that merge sort does.
+ 
+ 
+ complexity: merge sort: average and worst case o(nlogn); quick sort: average O(nlogn), worst case O(n^2); 
+ Space: merge sort: extra space; quick sort: in place 
+ Stability: merge sort: stable; quick sort: not stable 
+
+ Best fit: merge sort: slow seqential media; quick sort: general purpose.
