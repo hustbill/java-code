@@ -1,7 +1,36 @@
 /*
+
 UberPhoneInterview.java
 Date: April 26, 2016 11:00 am - 12:00pm
+
+Q1. Implement a rate limiter   attribute/decoration/annotation on top of an API endpoint. 
+caps to N requests per minute with a rolling window (implement from scratch / test / compiling + working code) 
+  // -user login to system (remember login)
+  // -for one min - record count in table , if > 35 disable user 
+  // - 2 database (one for read , other for write)
+  // - if you scale the system, you can use a cache (redis)
+  
+  Ref: http://stackoverflow.com/questions/8775079/how-to-rate-limit-an-api
+https://www.glassdoor.com/Interview/Q2-Implement-a-rate-limiter-attribute-decoration-annotation-on-top-of-an-API-endpoint-caps-to-N-requests-per-minute-with-QTN_1075051.htm
+ [Answer]
+
+ use a queue+ Choose time granularity ... on incoming request try to consume balance... dequeue , replenish balance + enqueue new values.
+ OR enqueue a time for incoming request while queue 1 minute ago.
+
+ Interview Candidate on Aug 5, 2015
+  
+  
+Q2.  Coin counting problem:
+    //  Given a unlimited number of coins of a certain denomination (i.e - 1, 3, 5, 10 25), print out all the ways that you can count up to a number n.
+     
+    //  For example: n = 7
+    //  1, 1, 5
+    //  3, 1, 1, 1, 1
+
+
 Failed!
+
+
 */    
     
     public class AProgram {
