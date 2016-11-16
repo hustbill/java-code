@@ -26,4 +26,6 @@ CREATE OR REPLACE FUNCTION increment(i integer) RETURNS integer AS $$
 $$ LANGUAGE plpgsql;
 
   select id, getNthHighestSalary(2) from Employee;
+  
+  ALTER TABLE Employee RENAME COLUMN ManageId TO ManagerId;
 
