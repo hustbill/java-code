@@ -3,6 +3,14 @@ package array;
 import java.util.Arrays;
 
 public class MergeSortedArray {
+	/* 
+	Test case:
+	[1, 4, 7, 0, 0, 0]
+	3
+	[2, 5]
+	2
+	result : [1, 2, 4, 5, 7, 0]
+	*/
 
 	public void merge(int[] nums1, int m, int[] nums2, int n) {
 		// https://discuss.leetcode.com/topic/10257/3-line-java-solution
@@ -12,7 +20,7 @@ public class MergeSortedArray {
 		}
 
 		while (j > -1) {
-			nums1[k--] = nums2[j--];
+			nums1[k--] = nums2[j--]; // this loop deal with  nums2 remains.
 		}
 	}
 
