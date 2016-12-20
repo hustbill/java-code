@@ -1,5 +1,19 @@
 public class CountAndSay {
 /*
+38. Count and Say   Add to List QuestionEditorial Solution  My Submissions
+Total Accepted: 110903
+Total Submissions: 343285
+Difficulty: Easy
+Contributors: Admin
+The count-and-say sequence is the sequence of integers beginning as follows:
+1, 11, 21, 1211, 111221, ...
+
+1 is read off as "one 1" or 11.
+11 is read off as "two 1s" or 21.
+21 is read off as "one 2, then one 1" or 1211.
+Given an integer n, generate the nth sequence.
+examples:
+
      1.     1
      2.     11
      3.     21
