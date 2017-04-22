@@ -64,7 +64,23 @@ public class PathSumThree {
 		return result;
 
 	}
-
+	/*
+	 * bill zhang 2017/4/21 for  112.Path Sum 
+	 */
+	  public boolean hasPathSum(TreeNode root, int sum) {
+		     
+	        if (root == null) {
+	            return false ;
+	        } 
+	        if (root.left == null && root.right == null) {
+	            return sum == root.val;
+	        } 
+	        
+	        return hasPathSum(root.left, sum - root.val) ||
+	             hasPathSum(root.right, sum - root.val);
+	    }
+	    
+	  
 	public void dfs(TreeNode root, int sum, List<List<Integer>> result, List<Integer> path) {
 		if (root == null)
 			return;
