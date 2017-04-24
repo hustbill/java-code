@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="quantil/|quantil/|quantil/quantil/|quantil/|quantil/quantil/" kind="src" path="src"/>
+	<classpathentry excluding="quantil/quantil/|quantil/quantil/" kind="src" path="src"/>
 	<classpathentry kind="src" path="java-interviews-exposed"/>
 	<classpathentry kind="src" path="Company"/>
 	<classpathentry kind="src" path="ctci"/>
-	<classpathentry kind="src" path="utility"/>
-	<classpathentry kind="src" path="Model"/>
-	<classpathentry excluding="quantil/|quantil/" kind="src" path="src/quantil"/>
-	<classpathentry kind="src" path="src/quantil/quantil"/>
-	<classpathentry kind="src" path="quantil"/>
+	<classpathentry excluding="src/|java-interviews-exposed/|Company/|ctci/" kind="src" path=""/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
