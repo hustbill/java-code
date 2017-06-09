@@ -1,0 +1,22 @@
+2017.05.05-Scala BOA questions
+
+1. left JOIN
+2. Scala Option
+http://career.guru99.com/top-25-interview-questions-on-scala/
+3. Benefit of Function programming 
+http://www.ruanyifeng.com/blog/2012/04/functional_programming.html
+https://www.zhihu.com/question/28292740
+4. Elastic Search:  可能遇到的问题
+5.事先没有看这篇文章： https://www.dezyre.com/article/scala-interview-questions-and-answers-for-spark-developers/302
+
+6.SPARK 是怎么创建datapipline的 
+https://spark.apache.org/docs/2.1.0/
+
+
+SQL LEFT JOIN Keyword
+The LEFT JOIN keyword returns all records from the left table (table1), and the matched records from the right table (table2). The result is NULL from the right side, if there is no match.
+
+LEFT JOIN Syntax
+SELECT column_name(s)
+FROM table1
+LEFT JOIN table2 ON table1.column_name = table2.column_name;
