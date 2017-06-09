@@ -1,5 +1,11 @@
 package array;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
 public class MajorityElementIII {
 
 	  public List<Integer> majorityElement(int[] nums) {
@@ -34,5 +40,4 @@ public class MajorityElementIII {
         for(int n : nums) if(n==key) count++;
         return count>nums.length/3;
     }
-}
 }

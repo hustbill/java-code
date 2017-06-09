@@ -1,4 +1,6 @@
- public class RotateArray {
+package array;
+
+public class RotateArray {
  
  /*
     let a= [1,2,3,4,5,6,7]
@@ -31,4 +33,4 @@
         reverse(nums, 0, k - 1);
         reverse(nums, k, nums.length - 1);
     }
-   }
+}
