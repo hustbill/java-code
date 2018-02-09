@@ -1,3 +1,5 @@
+package string;
+
 public class CountAndSay {
 /*
 38. Count and Say   Add to List QuestionEditorial Solution  My Submissions
