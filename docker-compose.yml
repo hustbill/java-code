@@ -1,0 +1,53 @@
+influxsrv:
+  image: tutum/influxdb
+  #name: influxsrv
+  ports:
+    - "8083:8083"
+    - "8086:8086"
+  expose:
+    - "8090"
+    - "8099"
+  environment:
+    - PRE_CREATE_DB=opera
+cadvisor:
+  image: google/cadvisor
+  # name: cadvisor
+  # command: -storage_driver=influxdb -storage_driver_db=cadvisor -storage_driver_host=influxsrv:8086
+  ports:
+    - "8080:8080"
+  volumes:
+    - /:/rootfs:ro
+    - /var/run:/var/run:rw
+    - /sys:/sys:ro
+    - /var/lib/docker/:/var/lib/docker:ro
+  links:
+    - influxsrv:influxsrv
+grafana:
+  image: grafana/grafana
+  # name: grafana
+  ports:
+    - "3000:3000"
+  links:
+    - influxsrv:influxsrv
+  environment:
+    - HTTP_USER=admin
+    - HTTP_PASS=admin
+    - INFLUXDB_HOST=localhost
+    - INFLUXDB_PORT=8086
+    - INFLUXDB_NAME=opera
+    - INFLUXDB_USER=root
+    - INFLUXDB_PASS=root
+tsda:
+  image: reliability-kafka-adapter:0.1
+  ports:
+    - "4242:4242"
+  links:
+  - influxsrv:influxsrv
+scollector:
+  image: scollector-opera
+  # command: ['-conf', '/etc/scollector.conf', '-p', '-f', 'cadvisor']
+  # command: ['-conf', '/etc/scollector.conf', '-f', 'cadvisor']
+  command: ['-conf', '/etc/scollector.conf']
+  links:
+  - cadvisor:cadvisor
+  - tsda:tsda
