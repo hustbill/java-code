@@ -13,7 +13,8 @@ public class MergeKLists {
 
 	public static ListNode mergeKListsPQ(ListNode[] lists) {
 		/*
-		 * Ref : 下面的解法，和leetcode clean code handbook v1.03 上是一致的。 但是加了注释。更加好懂。
+		 * Ref : 下面的解法，和leetcode clean code handbook v1.03 上是一致的。 
+		 * 但是加了注释。更加好懂。
 		 * http://www.programcreek.com/2013/02/leetcode-merge-k-sorted-lists-
 		 * java/ We could use a min heap of size k. The heap is first
 		 * initialized with the smallest element from each list.
@@ -81,6 +82,7 @@ public class MergeKLists {
 		return lists[0];
 	}
 	
+	// 2018-10-24 revisit here. 思路很清晰
 	public static ListNode merge2sortedLists(ListNode l1, ListNode l2) {
 		if (l2 == null) return l1;
 		if (l1 == null) return l2;

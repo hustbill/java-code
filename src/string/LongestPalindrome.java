@@ -1,3 +1,5 @@
+package string;
+
 class LongestPalindrome {
     public static void main(String[] args) {
 		String s = "cmkababccbabamk";
