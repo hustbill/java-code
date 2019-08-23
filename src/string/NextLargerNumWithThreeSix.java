@@ -1,6 +1,5 @@
 package string;
-
-import java.util.ArrayList;
+import java.util.*;
 
 //Given an integer input, find the next larger integer with 3 and 6 as the digits
 //
@@ -17,10 +16,7 @@ import java.util.ArrayList;
 //4-> 6?
 //-55 > 
 
-
 // base on input  -> next larger one use sample digits, ex.  123 -> 132 . 
-
-// 
 
 // 123 -> 333, 666  calc the gap between 
 
@@ -28,42 +24,46 @@ import java.util.ArrayList;
 // step 2:  3 digits, the output should in the range ( 333, 336, 366, 633, 636, 663, 666),  
 // step 3:  if in the range, get the minmum gap one,    333
 public class NextLargerNumWithThreeSix {
-	public String getNextLargerInteger(String input) {
+	public static String getNextLargerInteger(String input) {
+		char[] arr = input.toCharArray();
+		
 	   // 1. get the digitial size 
-	    int size = input.toCharArray().length;
+	    int size = arr.length;
 	    
-	    // 2. get the permutation range using 3 and 6  
-	    ArrayList<String> range = permutation(input);
-	    
-	    // 3. get the min one from range if it exist, or add a new digit
-	    int min = 0;
-	    for (String s : range) {
-	       // to be implement. 
-	    	System.out.println(s);
-	    }
-	    return input;
+	  
+        int[] nums = new int[input.length()];
+        for(int i = 0; i < input.length(); i++){
+            nums[i] = Integer.parseInt(""+input.charAt(i));
+        }
+        
+        for (int i = nums.length - 1; i >= 0; i--) {
+        	if (nums[i] <=3 )  {
+        		nums[i] = 3;
+        	} else if ( nums[i] >= 3 && nums[i] <6) {
+        		nums[i] = 6;
+        	} else if ( nums[i] >= 6) {
+        		nums[i] = 3;
+        	}
+        }
+        String res = Arrays.toString(nums);
+        return res;
+        
+//	    
+//	    // 2. get the permutation range using 3 and 6  
+//	    
+//	    // 3. get the min one from range if it exist, or add a new digit
+//	    int min = 0;
+//	    for (String s : range) {
+//	       // to be implement. 
+//	    	System.out.println(s);
+//	    }
+//	    return input;
 	}
 
-
-
-	private ArrayList<String> permutation(String s) {
-		// TODO Auto-generated method stub
-		  ArrayList<String> res = new ArrayList<>();
-		  if (s.length() == 1) {
-		     res.add(s);
-		  } else if (s.length() > 1) {
-		     int lastIndex = s.length() - 1;
-		     String last = s.substring(lastIndex);
-		     String rest = s.substring(0, lastIndex);
-		     // do permuation on the rest string and  then merge with last character 
-		     res = merge(permuation(rest), last);
-		     }
-		     return res;
-	}
-
-	
-	private ArrayList<String> merge(ArrayList<String> res, String last) {
-		return res;
-	}
+  public static void main(String[] args) {
+	  String input = "6753";
+	  String result = getNextLargerInteger(input);
+	  System.out.print(result);
+  }	
 }
 
