@@ -6,9 +6,9 @@
  * https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/
  *
  * algorithms
- * Medium (42.66%)
- * Total Accepted:    247.2K
- * Total Submissions: 579.1K
+ * Medium (42.67%)
+ * Total Accepted:    247.4K
+ * Total Submissions: 579.5K
  * Testcase Example:  '[3,9,20,15,7]\n[9,3,15,20,7]'
  *
  * Given preorder and inorder traversal of a tree, construct the binary tree.
@@ -43,6 +43,7 @@
  */
 class Solution {
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        
+      TreeNode root = new TreeNode(inorder[0]);
+      return root; 
     }
 }
