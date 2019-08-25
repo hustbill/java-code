@@ -42,8 +42,45 @@
  * }
  */
 class Solution {
+    //Ref: https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/solution/
+    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+    int pre_idx = 0 ;
+
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-      TreeNode root = new TreeNode(inorder[0]);
-      return root; 
+      int len1 = preorder.length;
+      int len2 = inorder.length;
+      if (len1 == 0 || len2 == 0 || len1 != len2) return null;
+
+      int idx = 0;
+      for (int val : inorder) {
+        map.put(val, idx++);
+      }
+
+      return helper(preorder, 0, len2); 
+    }
+
+    private TreeNode helper(int[] preorder, int in_left, int in_right) {
+      // if there is no element to construct subtree
+      if (in_left == in_right) {
+        return null;
+      }
+
+      // pick up pre_idx element as a root
+      int rootVal = preorder[pre_idx];
+      TreeNode root = new TreeNode(rootVal);
+
+      // root splits inorder list
+      // into left and right subtrees
+      int idx = map.get(rootVal); // index in inorder array
+      
+      // recursion
+      pre_idx++;
+
+      // build left subtree
+       root.left =  helper(preorder, in_left, idx);
+
+      // build right subtree
+       root.right = helper(preorder, idx + 1,  in_right);
+      return root;
     }
 }
