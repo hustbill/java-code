@@ -44,6 +44,29 @@
  */
 class Solution {
     public TreeNode buildTree(int[] inorder, int[] postorder) {
-        
+      int len1 = inorder.length;
+      int len2 = postorder.length;
+      
+      if (len1 == 0 || len2 == 0 || len1 != len2)  {
+        return null;
+	    }
+      HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+      for (int i = 0; i < len1; i++) {
+        map.put(inorder[i],i);
+      }
+      return helper(postorder, len2 - 1, map, 0, len1 - 1); // root pos in postorder is len2 - 1
+    }
+
+    private TreeNode helper(int[] postorder, int pos, HashMap<Integer, Integer> map, int begin, int end) {
+      int rootVal = postorder[pos];
+      TreeNode root = new TreeNode(rootVal);
+      int idx = map.get(postorder[pos]);
+
+      // left child tree 
+      if (begin < idx) 
+        root.left = helper(postorder, pos - (end - idx + 1), map, begin, idx - 1);
+      if (idx < end) 
+        root.right = helper(postorder, pos - 1, map, idx + 1, end); 
+      return root;
     }
 }
