@@ -21,6 +21,8 @@ Given n will always be valid.
 Follow up:
 
 Could you do this in one pass?
+
+Hint1: Maintain two pointers and update one with a delay of n steps.
  * @author huazhang
  *
  */
