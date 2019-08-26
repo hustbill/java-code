@@ -7,8 +7,8 @@
  *
  * algorithms
  * Easy (52.21%)
- * Total Accepted:    288.6K
- * Total Submissions: 552.5K
+ * Total Accepted:    288.9K
+ * Total Submissions: 553.1K
  * Testcase Example:  '[-10,-3,0,5,9]'
  *
  * Given an array where elements are sorted in ascending order, convert it to a
@@ -45,6 +45,17 @@
  */
 class Solution {
     public TreeNode sortedArrayToBST(int[] nums) {
-        
+      if (nums.length == 0) return null;
+      return helper(nums, 0, nums.length - 1);
+    }
+
+    private TreeNode helper(int[] nums, int begin, int end) {
+      if (begin > end) return null;
+
+      int mid = begin + (end - begin)/2;
+      TreeNode root = new TreeNode(nums[mid]);
+      root.left = helper(nums, begin, mid - 1);
+      root.right = helper(nums, mid + 1, end);
+      return root; 
     }
 }
