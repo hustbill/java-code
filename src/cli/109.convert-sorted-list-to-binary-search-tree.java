@@ -1,4 +1,6 @@
 /*
+ *
+ * private 
  * @lc app=leetcode id=109 lang=java
  *
  * [109] Convert Sorted List to Binary Search Tree
@@ -53,6 +55,35 @@
  */
 class Solution {
     public TreeNode sortedListToBST(ListNode head) {
+        // convert list to array
+        int len = 0;
+        ListNode p = head;
+        while (p != null) {
+            p = p.next;
+            len++;
+        }
+        System.out.println("len:" + len);
+        int[] nums = new int[len];
+        int i = 0;
+        while ( head != null &&  i < nums.length) {
+            nums[i] = head.val;
+            System.out.printf(" nums[%d]=%d ", i, nums[i]);
+            len--;
+            i++;
+            head = head.next;
+        }
         
+        int begin = 0;
+        int end = nums.length - 1;
+      return sortedArrayToBST(nums, begin, end);      
+    }
+
+    private TreeNode sortedArrayToBST(int[] nums, int begin, int end) {
+        if (begin > end) return null; 
+        int mid = begin + (end - begin) / 2;
+        TreeNode root = new TreeNode(nums[mid]);
+        root.left = sortedArrayToBST(nums, begin, mid - 1);
+        root.right = sortedArrayToBST(nums, mid + 1, end);
+        return root;
     }
 }
