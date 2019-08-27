@@ -60,7 +60,40 @@
  * }
  */
 class Solution {
+    int lh = 0;
+    int rh = 0;
+    
+    // O(N) time complexity
+    // bottom up approach, each node in the tree only need be accessed once.
     public boolean isBalanced(TreeNode root) {
+        return getHeight(root) != -1;
+    }
+
+    private int getHeight(TreeNode node) {
+        if (node == null) return 0;
         
+        int lH = getHeight(node.left);
+        if (lH == -1) {
+            return -1; // stop traversal, is not balanced binary tree
+        }
+        
+        int rH = getHeight(node.right);
+        if (rH == -1) {
+            return - 1;
+        }
+
+        if (Math.abs(rH -lH) > 1) {
+            return -1;
+        }
+        return Math.max(lH, rH) + 1;
+    }
+
+    public boolean isBalanced_failed(TreeNode root) { // 
+        if (root == null) return true;
+
+        if (root.left != null) lh++; // 当出现第一个左子树节点为叶子节点时，应该停止lh++
+        if (root.right != null) rh++;
+       
+        return Math.abs(lh - rh) > 1 ? false: isBalanced(root.left) && isBalanced(root.right);
     }
 }
