@@ -62,14 +62,42 @@
  */
 class Solution {
     public boolean isValidBST(TreeNode root) {
+        return helper(root, null, null);
+    
+    }
+    /*
+     * The idea above could be implemented as a recursion. 
+     * One compares the node value with its upper and lower limits if they are available.
+     * Then one repeats the same step recursively for left and right subtrees
+     * ltt 98.validate-binary-search-tree.java -t '[10,5,15,null,null,6,20]'
+     * */
+    public boolean helper(TreeNode node, Integer lower, Integer upper) {
+        if (node == null) return true;
+        
+        int val = node.val;
+        if (lower != null && val <= lower) {
+            return false;
+        }
+
+        if (upper != null && val >= upper) {
+            return false;
+        }
+        // need to keep val, lower or upper for nextuse
+        if (!helper(node.right, val, upper)) return false;
+        if (!helper(node.left, lower, val)) return false;
+        
+        return true;
+    }
+    
+    public boolean isValidBST_failed(TreeNode root) {
       if (root == null) return true;
-        if (root.right == null && root.left != null) return (root.left.val < root.val) && isValidBST(root.left);
-        if (root.left == null && root.right != null) return (root.right.val > root.val) && isValidBST(root.right);
+      if (root.left == null && root.left == null)  return true;
+      if (root.right == null && root.left != null) return (root.left.val < root.val) && isValidBST(root.left); 
+      if (root.left == null && root.right != null) return (root.right.val > root.val) && isValidBST(root.right);
        
        if (root.left != null && root.right != null) {
           if (root.val > root.left.val &&  root.right.val >  root.val) {
               return isValidBST(root.left) && isValidBST(root.right);    
-        
           } else {
             return false;
          }
