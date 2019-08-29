@@ -48,10 +48,11 @@ class Solution {
 
       int j = 1;
       while (j < nums.length - 1 && nums[0] < nums[j]) {
+        if (nums[j] == target) return j;
         j++;
       } 
       index = j;
-      System.out.println("index= " + index);
+      // System.out.println("index= " + index);
       // if target is the smallest element
       if (nums[index] == target) return index;
       
@@ -64,7 +65,7 @@ class Solution {
       } 
           
 
-      if (nums[lo] > target || nums[hi] > target) {
+      if (nums[lo] > target) {
          lo = index + 1; // search in the right side
          hi = nums.length - 1;
       }
