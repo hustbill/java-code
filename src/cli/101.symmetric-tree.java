@@ -53,7 +53,27 @@
  */
 class Solution {
     public boolean isSymmetric(TreeNode root) {
-       return isMirror(root, root); 
+       //return isMirror(root, root);
+       // iterative solution
+       Queue<TreeNode> q = new LinkedList<TreeNode>();
+       q.add(root);
+       q.add(root);
+
+       while(!q.isEmpty()) {
+           TreeNode t1 = q.poll();
+           TreeNode t2 = q.poll();
+
+           if (t1 == null && t2 == null) continue; // go to next round
+           if (t1 == null || t2 == null) return false;
+           if (t1.val != t2.val) return false; // not symmetric 
+
+           q.add(t1.left);
+           q.add(t2.right);
+           q.add(t1.right);
+           q.add(t2.left);
+        }
+       return true ;
+
     }
     // Time: O(n), Space: O(n) 
     // Recursive solution; another one is iterative using Stack
@@ -66,4 +86,6 @@ class Solution {
         }
         return isMirror(node1.left, node2.right) && isMirror(node1.right, node2.left);
     }
+
+
 }
