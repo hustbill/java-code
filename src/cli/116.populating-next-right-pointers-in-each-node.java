@@ -81,10 +81,25 @@ class Solution {
         helper(root);
         return root;
     }
+    
     // steps:
     // (1) Loop through level 0 to level n - 2; 
     // (2) Traverse this level and connect children
     public void helper(Node root) {
+      // https://leetcode.com/problems/populating-next-right-pointers-in-each-node/discuss/37461/Java-solution-with-O(1)-memory%2B-O(n)-time
+      Node level_start = root;
+      while (level_start != null) {
+          Node cur = level_start;
+          while (cur != null) {
+              if (cur.left != null) cur.left.next = cur.right;
+              if (cur.right != null && cur.next != null)  cur.right.next =  cur.next.left;
+              cur = cur.next;
+         }
+         level_start = level_start.left;
+       }
+    }
+
+    public void helper_ok1(Node root) {
         while(root != null && root.left != null) {
             Node cur = root;
             while(cur != null) {
