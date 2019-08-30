@@ -83,12 +83,43 @@ class Solution {
         return root;
     }
 
-    public void helper(Node) {
+    public void helper(Node root) {
        // ref: https://www.youtube.com/watch?v=mBVN8G-pIzU
        // https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/discuss/37811/Simple-solution-using-constant-space
        // level order traversal
        // limin9 的解法
        // loop the head in the leve; loop the node in each leve
+        Node parent = root;
+        Node childHead = new Node(0);
+        Node child = childHead;
+        while (parent != null) {
+            while (parent != null) {
+                if (parent.left != null) {
+                    if (childHead != null) {
+                        child.next = parent.left;
+                    } else {
+                        childHead = parent.left;
+                    }
+                    child = parent.left;
+                }
+
+                if (parent.right != null) {
+                    if (childHead != null) {
+                        child.next = parent.right;
+                    } else {
+                        childHead = parent.right;
+                    }
+                    child = parent.right;
+                }
+                parent = parent.next; // first while loop is for one horizontal level
+            }
+            parent = childHead; // go to iteration
+            child = null;
+            childHead = null;
+        }
+    }
+
+
     public void helper_nok(Node root) {
       Node levelStart = root;
       while (levelStart != null) {
