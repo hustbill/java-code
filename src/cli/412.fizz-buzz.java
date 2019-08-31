@@ -50,6 +50,32 @@ class Solution {
         for (int num = 1; num <= n; num++) {
             boolean divisiableBy3 = (num % 3 == 0);
             boolean divisiableBy5 = (num % 5 == 0);
+            String curr = "";
+            if (divisiableBy3) {
+                curr += "Fizz";
+            } 
+            if (divisiableBy5) {
+                curr += "Buzz";
+            } 
+            
+            if (curr.equals("")) {
+                // Not divisiable by 3 or 5, add the number
+                curr += Integer.toString(num);
+            }
+
+            // Append the current answer str to the ans list
+            ans.add(numAnsStr);
+        }
+        return ans;
+    }
+
+            
+    public List<String> fizzBuzzi_2(int n) {
+        List<String> ans = new ArrayList<String>();
+
+        for (int num = 1; num <= n; num++) {
+            boolean divisiableBy3 = (num % 3 == 0);
+            boolean divisiableBy5 = (num % 5 == 0);
             
             if (divisiableBy3 && divisiableBy5) {
                 ans.add("FizzBuzz");
