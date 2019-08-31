@@ -35,6 +35,8 @@
  * 
  */
 class Solution {
+    // Two pointers / Start from the end
+    // Time complexity: O(n+m), Space complexity: O(1)
     public void merge(int[] nums1, int m, int[] nums2, int n) {
         // two get pointers for nums1 and nums2
         int p1 = m - 1;
