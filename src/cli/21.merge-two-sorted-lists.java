@@ -32,7 +32,7 @@
 class Solution {
     // Time complexity: O(n + m) , Space Complexity: O(1)
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        // maintian an prehead node, ahead of return node
+        // maintain an prehead node, ahead of return node
         ListNode prehead = new ListNode(-1);
         ListNode prev = prehead;
 
