@@ -89,6 +89,7 @@ class Solution {
        // level order traversal
        // limin9 的解法
        // loop the head in the leve; loop the node in each leve
+       // 主要是看YouTube搞懂这题的， O(1) space and O(n) Time complexity
         Node parent = root;
         Node childHead = new Node(0);
         Node child = childHead;
