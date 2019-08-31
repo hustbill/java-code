@@ -36,56 +36,65 @@
  * }
  */
 class Solution {
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    // recommand solution by leetcode
+    public ListNode addTwoNumbers_og(ListNode l1, ListNode l2) {
         int carry = 0;
         
-        ListNode ans = new ListNode(0);
-        ListNode p = ans;
+        ListNode dummyHead = new ListNode(0);
+        ListNode p = l1, q = l2;
+        ListNode cur = dummyHead;
+        
+        while (p != null && q!= null) {
+            int x = (p != null) ? p.val : 0;
+            int y = (q != null) ? q.val : 0;
+            int sum = carry + x + y;
+            carry = sum / 10;
+            cur.next = new ListNode(sum % 10);
+            cur = cur.next;
+            if (p != null) p = p.next;
+            if (q != null) q = q.next;
+        }
+        if (carry > 0) {
+            cur.next = new ListNode(carry);
+        }
+        return dummyHead.next;
+    }
+
+    // my ok solution 8/30/2019
+     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode dummyHead = new ListNode(0);
+        ListNode curr = dummyHead;
+        int carry = 0;
         
         while (l1 != null && l2 != null) {
             int sum = l1.val + l2.val + carry;
-            if (sum >= 10) {
-                ans.next = new ListNode(sum - 10);
-                carry = 1;
-            } else {
-                ans.next = new ListNode(sum);
-                carry = 0;
-            }
+            carry = sum / 10;
+            curr.next = new ListNode(sum % 10);
             l1 = l1.next;
             l2 = l2.next;
-            ans = ans.next;
+            curr = curr.next;
         }
-        
+
         while (l1 != null) {
-            if (l1.val + carry >= 10) {
-                ans.next = new ListNode(l1.val + carry - 10);
-                carry = 1;
-            } else {
-                ans.next = new ListNode(l1.val + carry);
-                carry = 0;
-            }           
+            int sum = l1.val + carry;
+            carry = sum / 10;
+            curr.next = new ListNode(sum % 10);
             l1 = l1.next;
-            ans = ans.next;        
+            curr = curr.next;
         }
-        
+
         while (l2 != null) {
-            if (l2.val + carry >= 10) {
-                ans.next = new ListNode(l2.val + carry - 10);
-                carry = 1;
-            } else {
-                ans.next = new ListNode(l2.val + carry);
-                carry = 0;
-            }
-            
+            int sum = l2.val + carry;
+            carry = sum / 10;
+            curr.next = new ListNode(sum % 10);
             l2 = l2.next;
-            ans = ans.next;        
+            curr = curr.next;
         }
-        
-        if (carry == 1) {
-            ans.next = new ListNode(1);
-             carry = 0;
+
+        if (carry > 0) {
+            curr.next = new ListNode(carry);
         }
-        ans = ans.next;
-        return p.next;
+        curr = curr.next;
+        return dummyHead.next;
     }
 }
