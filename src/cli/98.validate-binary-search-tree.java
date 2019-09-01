@@ -67,24 +67,24 @@ class Solution {
     }
     /*
      * The idea above could be implemented as a recursion. 
-     * One compares the node value with its upper and lower limits if they are available.
+     * One compares the node value with its max and min limits if they are available.
      * Then one repeats the same step recursively for left and right subtrees
      * ltt 98.validate-binary-search-tree.java -t '[10,5,15,null,null,6,20]'
      * */
-    public boolean helper(TreeNode node, Integer lower, Integer upper) {
+    public boolean helper(TreeNode node, Integer min, Integer max) {
         if (node == null) return true;
         
         int val = node.val;
-        if (lower != null && val <= lower) {
+        if (min != null && val <= min) {
             return false;
         }
 
-        if (upper != null && val >= upper) {
+        if (max != null && val >= max) {
             return false;
         }
-        // need to keep val, lower or upper for nextuse
-        if (!helper(node.right, val, upper)) return false;
-        if (!helper(node.left, lower, val)) return false;
+        // need to keep val, min or max for nextuse
+        if (!helper(node.right, val, max)) return false;
+        if (!helper(node.left, min, val)) return false;
         
         return true;
     }
