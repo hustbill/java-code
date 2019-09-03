@@ -63,7 +63,7 @@ class Solution {
   
   'After lists: [[15, 7], [9, 20], [3]]'
   */
-    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+    public List<List<Integer>> levelOrderBottom_DFS(TreeNode root) {
         List<List<Integer>> lists = new ArrayList<List<Integer>>();
         dfs(root, lists, 0);
         return lists;
@@ -82,6 +82,28 @@ class Solution {
     }
 
 
+    // BFS
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<TreeNode>(); 
+        List<List<Integer>> ret = new ArrayList<List<Integer>>();
+        if (root == null) return ret;
+        queue.offer(root);
+
+        while(!queue.isEmpty()) {
+            int height = queue.size();
+           // System.out.printf("\nheight=%d", height);
+            List<Integer> curr = new ArrayList<Integer>();
+            for (int i = 0; i < height; i++) {
+                if (queue.peek().left != null) queue.offer(queue.peek().left);
+                if (queue.peek().right != null) queue.offer(queue.peek().right);
+                curr.add(queue.poll().val);
+            }
+            // System.out.println("\ncurr:" + curr);
+            ret.add(0, curr);
+        }
+        return ret;
+    }
+   
     public List<List<Integer>> levelOrderBottom_my_ok(TreeNode root) {
         List<List<Integer>> ans = new ArrayList<List<Integer>>();
         int height = getHeight(root);
