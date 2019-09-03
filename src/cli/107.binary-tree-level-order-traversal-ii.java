@@ -46,7 +46,43 @@
  * }
  */
 class Solution {
+    /* DFS
+     *   stdout: 
+  'lists: [[]]\n' +
+  'lists: [[], []]\n' +
+  'After lists: [[9], []]\n' +
+  
+  'lists: [[9], []]\n' +
+  'lists: [[], [9], []]\n' +
+  'After lists: [[15], [9], []]\n' +
+  
+  'lists: [[15], [9], []]\n' +
+  'After lists: [[15, 7], [9], []]\n' +
+  
+  'After lists: [[15, 7], [9, 20], []]\n' +
+  
+  'After lists: [[15, 7], [9, 20], [3]]'
+  */
     public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        List<List<Integer>> lists = new ArrayList<List<Integer>>();
+        dfs(root, lists, 0);
+        return lists;
+    }
+    
+    private void dfs(TreeNode root, List<List<Integer>> lists, int height) {
+        if (root == null) return;
+        if (lists.size() <= height) {
+            lists.add(0, new ArrayList<Integer>()); // new insert list was added to first index
+        }
+        // System.out.println("lists: " + lists);
+        dfs(root.left, lists, height + 1);
+        dfs(root.right, lists, height + 1);
+        lists.get(lists.size() - height - 1).add(root.val);
+        // System.out.println("\nAfter lists: " + lists);
+    }
+
+
+    public List<List<Integer>> levelOrderBottom_my_ok(TreeNode root) {
         List<List<Integer>> ans = new ArrayList<List<Integer>>();
         int height = getHeight(root);
         while (ans.size() < height) {
