@@ -26,25 +26,23 @@
  */
 class Solution {
     public String addStrings(String num1, String num2) {
-       int sum = 0;
-       
        char[] arr1 = num1.toCharArray();
        char[] arr2 = num2.toCharArray();
        int i = arr1.length - 1;
        int j = arr2.length - 1;
-        StringBuilder ret = new StringBuilder();
-       while(i >=0  || j >= 0) {
+       int carry = 0;
+       StringBuilder ret = new StringBuilder();
+       while(i >=0  || j >= 0 || carry == 1) {
+           int sum = carry;
            if (i >= 0) {
-               sum += arr1[i] - '0';
-               i--;
+               sum += arr1[i--] - '0';
            }
            if (j >= 0 ) {
-               sum += arr2[j] - '0';
-               j--;
+               sum += arr2[j--] - '0';
            }
-            ret.append(sum % 10);
-            sum /= 10;
+            ret.insert(0, sum % 10);
+           carry = sum / 10;
        }
-       return sum == 0 ? ret.reverse().toString() : ret.append(sum).reverse().toString(); 
+       return ret.toString(); 
     }
 }
