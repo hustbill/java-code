@@ -55,7 +55,8 @@ class Solution {
        }
        
        int sum = 0;
-       ListNode curr = new ListNode(0);
+      ListNode curr = new ListNode(0);
+       //  start with 0, If need to update curr, then check if curr is modified to 1
        while (!s1.isEmpty() || !s2.isEmpty()) {
             if (!s1.isEmpty())  sum += s1.pop();
             if (!s2.isEmpty()) sum += s2.pop();
@@ -66,6 +67,6 @@ class Solution {
             sum /= 10;
        }
     
-      return curr.val == 0 ? curr.next : curr;
+      return curr.val == 1 ? curr : curr.next; // check if curr is modified to 1, val == 1 means new node. 
     }
 }
