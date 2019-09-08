@@ -1,12 +1,19 @@
+package oj;
 import java.util.*;
 
-public class CodeTemplate {
+public class LetterCombian {
 	/*
-	
+	 * idx=2
+		t:  , ret: []
+		idx=3
+		t: a , ret: [b, c]
+		t: b , ret: [c, ad, ae, af]
+		t: c , ret: [ad, ae, af, bd, be, bf]
+		ret: [ad, ae, af, bd, be, bf, cd, ce, cf]
 
 	 */
 
-	public List<String> letterCombinations(String digits) {
+	public static List<String> letterCombinations(String digits) {
 		String[] dict = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
 		LinkedList<String> ret = new LinkedList<String>();
 		ret.add("");
@@ -29,8 +36,7 @@ public class CodeTemplate {
 
 	public static  void main(String[] args) {
 		String digits = "23";
-		CodeTemplate ts  = new CodeTemplate();
-		List<String> ret = ts.letterCombinations(digits);
+		List<String> ret = letterCombinations(digits);
 		System.out.println("ret: " + ret);
 	}
 

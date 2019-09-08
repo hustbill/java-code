@@ -1,6 +1,9 @@
+package oj;
+
+
 import java.util.*;
 
-public class TestTemplate {
+public class CodeTemplate {
 	/*
 	
 
@@ -29,8 +32,8 @@ public class TestTemplate {
 
 	public static  void main(String[] args) {
 		String digits = "23";
-		CodeTemplate cdt  = new CodeTemplate();
-		List<String> ret = cdt.letterCombinations(digits);
+		CodeTemplate ts  = new CodeTemplate();
+		List<String> ret = ts.letterCombinations(digits);
 		System.out.println("ret: " + ret);
 	}
 
