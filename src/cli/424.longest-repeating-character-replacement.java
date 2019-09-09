@@ -75,7 +75,7 @@ Given this, we can apply the at most k changes constraint and maintain a sliding
             
              // if max character frequency + distance between start and end is greater than k
             // this means we have considered changing more than k charactres. So time to shrink window
-            if (end - start + 1 - maxCount > k) {
+            while (end - start + 1 - maxCount > k) { // if => while,  13 ms to 6 ms  更快了
                 counts[s.charAt(start) - 'A']--;
                 start++;
             }
