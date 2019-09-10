@@ -13,5 +13,5 @@ def longestSub(text):
            res = text[idx:i+1]
    return res
 
-ret = longestSub("aaab");
+ret = longestSub("abcdefghabcdefghlmnlmnlmn");
 print(ret);

@@ -29,30 +29,34 @@ def longestSub(self, text):
 		int[] counts = new int[26]; // count of each char
 		int n = s.length();
 		
-		int idx = 0;
+		int idx = 0, end = 0; // use two pointers (begin, end) to slide window
 		int maxLength = 0;
 		String ret = "";
 		
-		for (int i = 0; i < n; i++) {
-			char c = s.charAt(i);
+		for (end = 0; end < n; end++) {
+			char c = s.charAt(end);
 			counts[c - 'a']++;
 			while (counts[c - 'a'] > 2) {
 				char d = s.charAt(idx);
-				idx++;
+				idx++; // move the left pointer
 				counts[d - 'a']--;
 			}
-			maxLength = Math.max(maxLength, i - idx); 
-			
-			ret = s.substring(idx, i + 1);
+			if (maxLength < end - idx + 1) {
+				maxLength = end - idx + 1;
+				ret = s.substring(idx, idx + maxLength);
+			}
 		}
 		return ret;
 	}
 	
 	public static  void main(String[] args) {
-		String str = "aaabaaab";
+		String[] strs = {"abcdefghabcdefghlmnlmnlmn", "aaab", "aab", "ab", "abcdeffaggabc", "lmnalmnabclmn","a", ""};
+
 		CodeTemplate ts  = new CodeTemplate();
-		String ret = ts.longestSubstr(str);
-		System.out.println("ret: " + ret);
+		for (String str : strs) {
+			String ret = ts.longestSubstr(str);
+			System.out.println("ret: " + ret);	
+		}
 	}
 
 }
