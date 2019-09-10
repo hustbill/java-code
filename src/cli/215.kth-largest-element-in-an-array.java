@@ -36,7 +36,7 @@ import java.util.*;
 class Solution {
     public int findKthLargest(int[] nums, int k) {
         if (nums == null || nums.length < k || k == 0) return -1;
-        // init heap 'the smallest elemant first'
+        // init heap 'the smallest element first'
         PriorityQueue<Integer> heap = new PriorityQueue<Integer>((n1, n2) -> n1 - n2);
 
         // keep K largest elements in the heap 
