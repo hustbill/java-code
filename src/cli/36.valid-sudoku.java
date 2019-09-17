@@ -1,0 +1,132 @@
+/*
+ * @lc app=leetcode id=36 lang=java
+ *
+ * [36] Valid Sudoku
+ *
+ * https://leetcode.com/problems/valid-sudoku/description/
+ *
+ * algorithms
+ * Medium (44.37%)
+ * Total Accepted:    268K
+ * Total Submissions: 599.3K
+ * Testcase Example:  '[["5","3",".",".","7",".",".",".","."],["6",".",".","1","9","5",".",".","."],[".","9","8",".",".",".",".","6","."],["8",".",".",".","6",".",".",".","3"],["4",".",".","8",".","3",".",".","1"],["7",".",".",".","2",".",".",".","6"],[".","6",".",".",".",".","2","8","."],[".",".",".","4","1","9",".",".","5"],[".",".",".",".","8",".",".","7","9"]]'
+ *
+ * Determine if a 9x9 Sudoku board is valid. Only the filled cells need to be
+ * validated according to the following rules:
+ * 
+ * 
+ * Each row must contain the digits 1-9 without repetition.
+ * Each column must contain the digits 1-9 without repetition.
+ * Each of the 9 3x3 sub-boxes of the grid must contain the digits 1-9 without
+ * repetition.
+ * 
+ * 
+ * 
+ * A partially filled sudoku which is valid.
+ * 
+ * The Sudoku board could be partially filled, where empty cells are filled
+ * with the character '.'.
+ * 
+ * Example 1:
+ * 
+ * 
+ * Input:
+ * [
+ * ⁠ ["5","3",".",".","7",".",".",".","."],
+ * ⁠ ["6",".",".","1","9","5",".",".","."],
+ * ⁠ [".","9","8",".",".",".",".","6","."],
+ * ⁠ ["8",".",".",".","6",".",".",".","3"],
+ * ⁠ ["4",".",".","8",".","3",".",".","1"],
+ * ⁠ ["7",".",".",".","2",".",".",".","6"],
+ * ⁠ [".","6",".",".",".",".","2","8","."],
+ * ⁠ [".",".",".","4","1","9",".",".","5"],
+ * ⁠ [".",".",".",".","8",".",".","7","9"]
+ * ]
+ * Output: true
+ * 
+ * 
+ * Example 2:
+ * 
+ * 
+ * Input:
+ * [
+ * ["8","3",".",".","7",".",".",".","."],
+ * ["6",".",".","1","9","5",".",".","."],
+ * [".","9","8",".",".",".",".","6","."],
+ * ["8",".",".",".","6",".",".",".","3"],
+ * ["4",".",".","8",".","3",".",".","1"],
+ * ["7",".",".",".","2",".",".",".","6"],
+ * [".","6",".",".",".",".","2","8","."],
+ * [".",".",".","4","1","9",".",".","5"],
+ * [".",".",".",".","8",".",".","7","9"]
+ * ]
+ * Output: false
+ * Explanation: Same as Example 1, except with the 5 in the top left corner
+ * being 
+ * ⁠   modified to 8. Since there are two 8's in the top left 3x3 sub-box, it
+ * is invalid.
+ * 
+ * 
+ * Note:
+ * 
+ * 
+ * A Sudoku board (partially filled) could be valid but is not necessarily
+ * solvable.
+ * Only the filled cells need to be validated according to the mentioned
+ * rules.
+ * The given board contain only digits 1-9 and the character '.'.
+ * The given board size is always 9x9.
+ * 
+ * 
+ */
+class Solution {
+    // https://leetcode.com/problems/valid-sudoku/discuss/15450/Shared-my-concise-Java-code
+    /*
+     * Idea:
+     * Great solution!. Just trying to explain how to think about % and /. These two operators can be helpful for matrix traversal problems.
+
+For a block traversal, it goes the following way.
+
+0,0, 0,1, 0,2; < --- 3 Horizontal Steps followed by 1 Vertical step to next level.
+
+1,0, 1,1, 1,2; < --- 3 Horizontal Steps followed by 1 Vertical step to next level.
+
+2,0, 2,1, 2,2; < --- 3 Horizontal Steps.
+
+And so on...
+But, the j iterates from 0 to 9.
+
+But we need to stop after 3 horizontal steps, and go down 1 step vertical.
+
+Use % for horizontal traversal. Because % increments by 1 for each j : 0%3 = 0 , 1%3 = 1, 2%3 = 2, and resets back. So this covers horizontal traversal for each block by 3 steps.
+
+Use / for vertical traversal. Because / increments by 1 after every 3 j: 0/3 = 0; 1/3 = 0; 2/3 =0; 3/3 = 1.
+
+So far, for a given block, you can traverse the whole block using just j.
+
+But because j is just 0 to 9, it will stay only first block. But to increment block, use i. To move horizontally to next block, use % again : ColIndex = 3 * i%3 (Multiply by 3 so that the next block is after 3 columns. Ie 0,0 is start of first block, second block is 0,3 (not 0,1);
+
+Similarly, to move to next block vertically, use / and multiply by 3 as explained above. Hope this helps.
+*
+*/
+    public boolean isValidSudoku(char[][] board) {
+        for (int i = 0; i < 9; i++) {
+            HashSet<Character> rows = new HashSet<Character>();
+            HashSet<Character> columns = new HashSet<Character>();
+            HashSet<Character> cube = new HashSet<Character>();
+
+            for (int j = 0; j < 9; j++) {
+                if (board[i][j] != '.' && !rows.add(board[i][j]))
+                        return false;
+                if (board[j][i] != '.' && !columns.add(board[j][i]))
+                        return false;
+                int RowIndex = 3 * (i / 3);
+                int ColIndex = 3 * (i % 3);
+                if (board[RowIndex + j/3][ColIndex + j % 3] != '.'
+                      && !cube.add(board[RowIndex + j / 3][ColIndex + j % 3]))
+                return false;
+            }
+        }
+        return true;
+    }
+}
