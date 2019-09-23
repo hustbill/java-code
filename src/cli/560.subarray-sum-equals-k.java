@@ -52,7 +52,7 @@ class Solution {
     }
     
     // Approach #3 Time: O(N^2) , Space O(1); 
-    public int subarraySum(int[] nums, int k) {
+    public int subarraySum_n2(int[] nums, int k) {
        int count = 0;
        for (int start = 0; start < nums.length; start++) {
            int sum = 0;
@@ -62,6 +62,28 @@ class Solution {
                    count++;
                 }
            }
+       }
+       return count;
+    }
+    
+       // Approach #4 , Using HashMap, <key, value> is <Cummulative sum, frequency>, Time: O(N) , Space O(N); 
+       // Best Solution: https://leetcode.com/problems/subarray-sum-equals-k/discuss/102106/Java-Solution-PreSum-%2B-HashMap  
+       // the key to solve this problem is sum[i, j], 
+       // if we know sum[0, i - 1],  sum [0, j], then we can easy get sum[i, j].   If sum[i, j] = sum[j] - sum[i - 1]  == k,   we got one valid subarray.
+       // to archive this, we just go through the array,  calcuate the current sum and save the number(/frequency)  of all seen PreSum to HashMap.
+       // Time complexity O(n), Space complexity O(n).
+    public int subarraySum(int[] nums, int k) {
+       int count = 0;
+       int sum = 0;
+       Map<Integer, Integer> map = new HashMap<>();
+       map.put(0, 1); // add (sum[0], 1) to map
+
+       for (int i = 0; i < nums.length; i++) {
+           sum += nums[i];
+           if (map.containsKey(sum - k)) {
+               count += map.get(sum - k);
+           } 
+           map.put(sum, map.getOrDefault(sum, 0) + 1);
        }
        return count;
     }

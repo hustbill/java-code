@@ -78,6 +78,7 @@
  * 
  */
 class Solution {
+    // Ref: https://leetcode.com/problems/roman-to-integer/discuss/6509/7ms-solution-in-Java.-easy-to-understand
     public int romanToInt(String s) {
         if (s == null || s.length() == 0) 
             return 0;
