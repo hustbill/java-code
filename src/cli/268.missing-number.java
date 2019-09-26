@@ -33,7 +33,7 @@
  * it using only constant extra space complexity?
  */
 class Solution {
-    // Approach 3 : Bit Manupulation (XOR), Time: O(N), Space: O(1) 
+    // Approach 3 : Bit Manipulation (XOR), Time: O(N), Space: O(1) 
     /*
     index: [0, 1, 2, 3]
     input: [0, 1, 2, 4]
