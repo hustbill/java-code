@@ -43,7 +43,7 @@ class Solution {
         }
 
         // After we have finished processing new elements,
-        // all the non-zero elements are alreay at beginning of array.
+        // all the non-zero elements are already at the beginning of the array.
         // We just need to fill remaining array with 0's.
         for (int i = lastNonZeroFoundAt; i < nums.length; i++) {
             nums[i] = 0;
