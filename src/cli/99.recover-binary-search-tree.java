@@ -87,9 +87,9 @@ class Solution {
           }
           root = stack.removeLast();
           if (pred != null && root.val < pred.val) {
-            // first swap occurence
+            // first swap occurrence
             y = root;
-            // second swap occurence
+            // second swap occurrence
             if (x == null) x = pred;
             else break;
           }
