@@ -73,7 +73,35 @@
  * }
  */
 class Solution {
+    // idea: find two swapped nodes during the inorder traversal, and swap node values.
+    // There are 3 different approaches to implement inorder traversal: iterative, recursive and morris.
+    // using three pointers:  x, y , pred
     public void recoverTree(TreeNode root) {
-        
+        Deque<TreeNode> stack = new ArrayDeque();
+        TreeNode x = null, y = null, pred = null;
+
+        while (!stack.isEmpty() || root != null) {
+          while (root != null) {
+            stack.add(root);
+            root = root.left;
+          }
+          root = stack.removeLast();
+          if (pred != null && root.val < pred.val) {
+            // first swap occurence
+            y = root;
+            // second swap occurence
+            if (x == null) x = pred;
+            else break;
+          }
+          pred = root;
+          root = root.right;
+        }
+        swap(x,y);
+    }
+
+    private void swap(TreeNode a, TreeNode b) {
+        int tmp = a.val;
+        a.val = b.val;
+        b.val = tmp;
     }
 }
