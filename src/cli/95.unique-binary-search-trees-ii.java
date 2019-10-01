@@ -63,10 +63,10 @@ class Solution {
 
         // pick up a root
         for (int i = start; i <= end; i++) {
-            // all possible left substrees if i is choosen to be a root
+            // all possible left substree if i is chosen to be a root
             List<TreeNode> leftSubtrees = generateSubtrees(start, i - 1);
 
-            // all possible right substrees if i is choosen to be a root
+            // all possible right substree if i is chosen to be a root
             List<TreeNode> rightSubtrees = generateSubtrees(i + 1, end);
 
             // connect left and right trees to the root i
