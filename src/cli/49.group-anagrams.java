@@ -81,8 +81,15 @@ class Solution {
     private boolean isAngrams(String a, String b) {
         char[] aArr = a.toCharArray();
         char[] bArr = b.toCharArray();
-        Arrays.sort(aArr);
-        Arrays.sort(bArr);
-        return Arrays.equals(aArr, bArr);
+        // Arrays.sort(aArr);
+        // Arrays.sort(bArr);
+        // return Arrays.equals(aArr, bArr);
+        int[] buckets = new int[26];
+        for (char i : aArr) buckets[i - 'a']++;
+        for (char j : bArr) buckets[j - 'a']--;
+        for (int i: buckets) {
+            if (i != 0) return false;
+        }
+        return true;
     }
 }
