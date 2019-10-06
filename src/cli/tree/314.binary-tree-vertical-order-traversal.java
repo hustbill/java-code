@@ -103,7 +103,59 @@
  * }
  */
 class Solution {
+    /*
+     * BFS,
+     * put node, col into queue at the same time
+     * Every left child access col - 1 while right child col + 1
+     * This maps node into different col buckets
+     * Get col boundary min and max on the fly
+     * Retrive result from cols
+     * https://leetcode.com/problems/binary-tree-vertical-order-traversal/discuss/76401/5ms-Java-Clean-Solution
+     */
     public List<List<Integer>> verticalOrder(TreeNode root) {
+       List<List<Integer>> ret = new ArrayList<List<Integer>>();
+       if (root == null) return ret;
+        
+       Map<Integer, ArrayList<Integer>> map = new HashMap<>();
+
+       Queue<TreeNode> q = new LinkedList<>();
+       Queue<Integer> cols = new LinkedList<>();
+       
+       q.add(root);
+       cols.add(0);
+       int min = 0;
+       int max = 0;
+    
+       while (!q.isEmpty()) {
+           TreeNode node = q.poll();
+           int col = cols.poll();
+           
+           if (!map.containsKey(col)) {
+               map.put(col, new ArrayList<Integer>());
+           }
+           map.get(col).add(node.val);
+         
+           if (node.left != null) {
+               q.add(node.left);
+               cols.add(col - 1);
+               min = Math.min(min, col - 1);
+           }
+           if (node.right != null) {
+               q.add(node.right);
+               cols.add(col + 1);
+               max = Math.max(max, col + 1);
+           }
+       }
+      
+       for (int i = min; i <= max; i++) {
+           ret.add(map.get(i));
+       }
+       return ret; 
+    }
+    
+    // my doesn't work solution,  
+    // only travesal left.left, right.right, not cover left.right, or right.left
+    public List<List<Integer>> verticalOrderi_nok(TreeNode root) {
         int col = 0; 
         Map<Integer, List<Integer>> map = new HashMap<>();
 
