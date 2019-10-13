@@ -28,11 +28,54 @@ public class TestTemplate {
 		return ret;
 	}
 
+
+	public int balancedStringSplit(String s) {
+        // using stack
+        if (s.length() < 2) return 0;
+        
+        Stack<Character> stack = new Stack<Character>();        
+        char[] arr = s.toCharArray();
+        int count = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (stack.isEmpty() ) {
+                if (arr[i] != arr[i + 1]) {
+                    count++;
+                    i = i + 1;
+                } else {
+                    stack.push(arr[i]);                    
+                }
+            } else {
+                if (stack.peek() == arr[i] )  {
+                    stack.push(arr[i]);
+                }  else {
+                    stack.pop();
+                    if (stack.isEmpty()) count++;
+                }
+            }
+        }
+        return count;        
+    }
+	
+	// 5223. 
+	public List<List<Integer>> queensAttacktheKing(int[][] queens, int[] king) {
+		List<List<Integer>> ret  = new ArrayList<List<Integer>>();
+		
+		
+		return ret;
+	}
+	
+
 	public static  void main(String[] args) {
 		String digits = "23";
-		CodeTemplate cdt  = new CodeTemplate();
-		List<String> ret = cdt.letterCombinations(digits);
-		System.out.println("ret: " + ret);
+		TestTemplate cdt  = new TestTemplate();
+		// List<String> ret = cdt.letterCombinations(digits);
+		// System.out.println("ret: " + ret);
+
+		String[] inputStrArr = { "RLRRLLRLRL", "RLLLLRRRLR", "LLLLRRRR" }; //,
+		for (String str : inputStrArr) {
+			int result = cdt.balancedStringSplit(str);
+			System.out.println("result: " + result);
+		}
 	}
 
 }
