@@ -59,7 +59,20 @@ public class TestTemplate {
 	// 5223. 
 	public List<List<Integer>> queensAttacktheKing(int[][] queens, int[] king) {
 		List<List<Integer>> ret  = new ArrayList<List<Integer>>();
+		int row = king[0];
+		int col = king[1];
+		int m = queens.length;
 		
+		// row
+		// if r == row,  c1 < col < c2,  two queens can attack king,  if  col < c1 < c2 or  col > c1 > c2 , only c1 can attack king
+		
+		
+		// col
+		// if c== col,  r1 < row < r2,  two queens can attack king,  if  row < r1 < r2 or  row > r1 > r2 , only r1 can attack king
+		
+		// diag
+		
+		// antidiag
 		
 		return ret;
 	}
