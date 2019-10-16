@@ -1,3 +1,7 @@
+import java.util.Queue;
+
+import javax.swing.tree.TreeNode;
+
 /*
  * @lc app=leetcode id=199 lang=java
  *
@@ -44,6 +48,37 @@
 class Solution {
 
     public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> ret = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        
+        if (root == null)
+            return ret;
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            // number of nodes at current level
+            int levelNum = queue.size();
+            
+            // Traverse all ndoes of current level
+            for (int i = 1; i <= levelNum; i++) {
+                TreeNode curr = queue.poll();
+                // Add the right most element at the level
+                if (i == levelNum)
+                    ret.add(curr.val);
+                //Add left node to queue
+                if (curr.left != null)
+                    queue.offer(curr.left);
+                // Add right node to queue
+                if (curr.right != null)
+                    queue.offer(curr.right);              
+            }
+        }
+        return ret;
+
+    }
+
+    // first level order traversal
+    // second, get the rightmost item from sublist, add into result list.
+    public List<Integer> rightSideView_my_original_ok(TreeNode root) {
         List<Integer> ret = new ArrayList<>();
         Stack<Integer> stack = new Stack<Integer>();
         Queue<TreeNode> queue = new LinkedList<TreeNode>();
