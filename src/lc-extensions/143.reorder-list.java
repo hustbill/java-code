@@ -42,25 +42,75 @@
  * }
  */
 class Solution {
-    public void reorderList(ListNode head) {
-        ListNode dummy = new ListNode(0);
-        dummy.next = head;
-        ListNode fast = head;
-        ListNode slow = head;
+    	public void reorderList(ListNode head) {
+			if (head == null || head.next == null) 
+				return;
+			// step 1. cut the list to two halves
+			// prev will be the tail of 1st half
+			// slow will be the head of 2nd half
+			ListNode prev = null, slow = head, fast = head, l1 = head;
+			
+			while (fast != null && fast.next != null) {
+				prev = slow;
+				slow = slow.next;
+				fast = fast.next.next;
+			}
+			
+			prev.next = null;
+			
+			// step 2. reverse the 2nd half
+			ListNode l2 = reverse(slow);
+			
+			// step 3 merge the two halves
+			merge(l1, l2);			
+		}
+		
+		public ListNode reverse(ListNode head) {
+			ListNode prev = null, curr = head, next = null;
+			
+			while (curr != null) {
+				next = curr.next;
+				curr.next = prev;
+				prev = curr;
+				curr = next;
+			}
+			
+			return prev;
+		}
+	
+	    // merge
+	    public void merge(ListNode l1, ListNode l2) {
+	    	while (l1 != null) {
+	    		ListNode n1 = l1.next, n2 = l2.next;
+	    		l1.next = l2;
+	    		
+	    		if (n1 == null)
+	    			break;	    		
+	    		l2.next = n1;
+	    		l1 = n1;
+	    		l2 = n2;	    		
+	    	}
+	    }
 
-        while (fast != null && fast.next != null) {
-            fast = fast.next.next;
-            slow = slow.next;
+/*
+    public ListNode reverseList(ListNode head) {
+        ListNode prev = new ListNode(0);
+        prev.next = head;
+        ListNode p1 = head;
+        ListNode p2 = head.next;
+        ListNode p = head;       
+
+        while (p != null && p2 != null) {
+            p = p.next;
+            p1.next = p2.next;
+            p2.next = prev.next;
+            prev.next = p2;
+            p2 = p1.next;
         }
-
-        ListNode right = slow;
-        ListNode reversedRight = reverseList(right);
-        ListNode left = head;
-        
-        head = mergeTwoList(left, reversedRight);
+        return prev.next;
     }
 
-    publiv ListNode mergeTwoList(ListNode p1, ListNode p2) {
+    public ListNode mergeTwoList(ListNode p1, ListNode p2) {
         ListNode dummy = new ListNode(0);
         dummy.next = p1;
 
@@ -90,6 +140,7 @@ class Solution {
         }
         return prev.next;
     }
+    */
 }
 // @lc code=end
 
