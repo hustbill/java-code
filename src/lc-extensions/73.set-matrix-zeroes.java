@@ -96,7 +96,7 @@ class Solution {
                 // set whole col to 0
                 for (int l = 0; l < n; l++)
                     matrix[l][j] = 0;
-
+						visit[l][j] = true;
             }
         }
     }
