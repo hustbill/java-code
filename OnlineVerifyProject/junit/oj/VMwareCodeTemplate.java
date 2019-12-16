@@ -25,6 +25,10 @@ public class VMwareCodeTemplate {
 	        } 
 	}
 	
+	/*
+	 * 奇数偶数分离 Leetcode 905 ： https://leetcode.com/problems/sort-array-by-parity/
+	 */
+	
 	public int[] sortArrayByParity(int[] A) {
 		if(A.length == 0) 
 			return A;
